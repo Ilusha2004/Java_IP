@@ -1,4 +1,4 @@
-package com.laba_6a.XMLParser;
+package com.cross_cutting.Parsers.XMLParser;
 
 import java.io.File;
 import java.io.IOException;

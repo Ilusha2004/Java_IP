@@ -1,4 +1,4 @@
-package com.laba_6a.JsonParser;
+package com.cross_cutting.Parsers.JsonParser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
