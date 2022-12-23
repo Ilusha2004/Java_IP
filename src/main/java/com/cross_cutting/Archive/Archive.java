@@ -1,4 +1,4 @@
-package com.laba_6b.archive;
+package com.cross_cutting.Archive;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
