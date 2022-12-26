@@ -1,22 +1,38 @@
 package com.cross_cutting;
 
+import java.util.StringTokenizer;
+
+import com.cross_cutting.HelpfulThings.HepfulStrings;
+
 public class Main {
     public static void main(String[] args) {
-        String str = "2+3---1*5/2*45";
-        String[] arr = str.split("(?=([+\\-*/]))");
+        String str = "298798+379879-hkfasjhkhsfmkiac-acag-adh1vca*gh5/atgax2srgfb*4sgag5";
+
+        StringTokenizer tokenizer = new StringTokenizer(str, HepfulStrings.getAlphabetLH());
+        String temp = "";
+
+        while(tokenizer.hasMoreTokens()) {
+            temp += tokenizer.nextElement();
+        }
+        
+        System.out.println(temp);
+
+        String[] arr = temp.split("(?=([+\\-*/]))");
 
         for(String id : arr) {
             System.out.println(id);
         }
 
         int result = Integer.parseInt(arr[0]);
+
         for (int i = 1; i < arr.length; i++) {
             try {
                 result = performCalculation(result, arr[i]);
             } catch (Exception e) {
-                e.getStackTrace();
+                System.out.println(e.getMessage());
             }
         }
+
         System.out.println(result);
     }
  
