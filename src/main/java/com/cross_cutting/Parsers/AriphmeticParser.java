@@ -6,19 +6,30 @@ import com.cross_cutting.HelpfulThings.HepfulStrings;
 
 public class AriphmeticParser {
 
+    private String data;
+
     public AriphmeticParser(String data) {
+        this.data = data;
+    }
+
+    private String DeleteLatine() {
         StringTokenizer tokenizer = new StringTokenizer(data, HepfulStrings.getAlphabetLH());
-        String temp = "";
+        String temp = new String("");
 
         while(tokenizer.hasMoreTokens()) {
             temp += tokenizer.nextElement();
         }
 
-        String[] arr = temp.split("(?=([+\\-*/]))");
+        return temp;
+    }
 
-        int result = Integer.parseInt(arr[0]);
+    public Integer getResult() {
 
-        for (int i = 1; i < arr.length; i++) {
+        String[] arr = DeleteLatine().split("(?=([+\\-*/]))");
+
+        Integer result = Integer.parseInt(arr[0]);
+
+        for (Integer i = 1; i < arr.length; i++) {
             try {
                 result = performCalculation(result, arr[i]);
             } catch (Exception e) {
@@ -26,9 +37,10 @@ public class AriphmeticParser {
             }
         }
 
+        return result;
     }
     
-    public Integer performCalculation(Integer currentResult, String operationAndNumber) {
+    private Integer performCalculation(Integer currentResult, String operationAndNumber) {
 
         String[] operationAndNumberArr = operationAndNumber.split("");
         String operation = operationAndNumberArr[0];
