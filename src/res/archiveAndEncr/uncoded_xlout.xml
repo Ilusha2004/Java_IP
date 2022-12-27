@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Track xmlns="Nürburgring">
+    <SportCar BrandCar="MAZ">
+        <TimePass>0.0</TimePass>
+        <PassingCar>Volkswagen</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Mercedes-Benz">
+        <TimePass>0.004329004329004078</TimePass>
+        <PassingCar>Lancia</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Mercedes-Benz">
+        <TimePass>0.35317636605952907</TimePass>
+        <PassingCar>Lada</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Mercedes-Benz">
+        <TimePass>0.37786913326481664</TimePass>
+        <PassingCar>Volkswagen</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Lancia">
+        <TimePass>0.3930693069306931</TimePass>
+        <PassingCar>Lada</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Lancia">
+        <TimePass>0.4099702380952381</TimePass>
+        <PassingCar>Volkswagen</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Lada">
+        <TimePass>0.4610778443113771</TimePass>
+        <PassingCar>Volkswagen</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Mercedes-Benz">
+        <TimePass>0.49707075259125727</TimePass>
+        <PassingCar>MAZ</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="BMW">
+        <TimePass>0.5399784869128719</TimePass>
+        <PassingCar>Volkswagen</PassingCar>
+    </SportCar>
+    <SportCar BrandCar="Lancia">
+        <TimePass>0.5543259557344065</TimePass>
+        <PassingCar>MAZ</PassingCar>
+    </SportCar>
+</Track>
