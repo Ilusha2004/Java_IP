@@ -1,4 +1,4 @@
-package com.laba_6b.uncrypt;
+package com.cross_cutting.Uncrypt;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

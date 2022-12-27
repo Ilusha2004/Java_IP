@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.cross_cutting.Parsers.AriphmeticParser;
+import com.cross_cutting.Arifmetic.AriphmeticParser;
 
 public class ParserJson {
 

@@ -1,14 +1,7 @@
 package com.cross_cutting.Archive;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.jar.JarEntry;
-import java.util.jar.JarOutputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-public class Archive {
-
+public class DeArchive {
+    
     private String path;
     private String name;
     private String extension;

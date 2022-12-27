@@ -3,8 +3,6 @@ package com.cross_cutting.Parsers.XMLParser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,7 +17,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.cross_cutting.Parsers.AriphmeticParser;
+import com.cross_cutting.Arifmetic.AriphmeticParser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -54,7 +52,7 @@ public class XMLParser {
     }
 
     public void WriteXMLFile(String filePath) {
-        
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
     

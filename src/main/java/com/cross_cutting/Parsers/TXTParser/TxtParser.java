@@ -7,7 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.annotation.processing.FilerException;
-import com.cross_cutting.Parsers.AriphmeticParser;
+
+import com.cross_cutting.Arifmetic.AriphmeticParser;
 
 public class TxtParser {
    
@@ -54,7 +55,7 @@ public class TxtParser {
     }
 
     public static void main(String[] args) throws IOException {
-        TxtParser Main = new TxtParser("src/res/arifmetics.txt", "src/res/orderout.txt");
+        TxtParser Main = new TxtParser("src/res/arifmetics.PLAIN", "src/res/orderout.txt");
         Main.ReadFile();
         Main.WriteFile();
     }
