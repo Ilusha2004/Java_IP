@@ -18,15 +18,17 @@ import javax.xml.transform.stream.StreamResult;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import com.laba_6a.car.Car;
+
+import com.cross_cutting.Parsers.AriphmeticParser;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class XMLParser {
 
-    private static ArrayList<Car> cars = new ArrayList<Car>();
-    private static Hashtable<Car, String> Cars = new Hashtable<Car, String>();
+    private static ArrayList<String> rawAriphStrings = new ArrayList<String>();
+    private static ArrayList<Integer> rezuList = new ArrayList<>();
 
     public void Parse(String filePath) throws ParserConfigurationException, SAXException, IOException{
 
@@ -41,45 +43,35 @@ public class XMLParser {
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-            if(qName.equals("car")){
-                String brand = attributes.getValue("brand");
-                String pos = attributes.getValue("position");
-                String vel = attributes.getValue("velocity");
-
-                cars.add(new Car(Double.valueOf(pos),
-                                 Double.valueOf(vel),
-                                 brand,
-                       null));
+            if(qName.equals("RawString")){
+                String str = attributes.getValue("str");
+                AriphmeticParser tAriphmeticParser = new AriphmeticParser(str);
+                rezuList.add(tAriphmeticParser.getResult());
+                rawAriphStrings.add(str);
             }
         }
 
     }
 
     public void WriteXMLFile(String filePath) {
+        
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
     
-
         try{
             builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
 
-            Element element = document.createElementNS("Nürburgring", "Track");
+            Element element = document.createElementNS(null, "Results");
 
             document.appendChild(element);
             
             try {
-
-                for(var id : cars) {
-                    element.appendChild(getCar(document,
-                                        id.getBrand().toString(),
-                                        id.getRaInteger().toString(),
-                                        Cars.get(id)));
-                                 
+                for(var id : rezuList) {
+                    element.appendChild(getResult(document, id.toString()));           
                 }
-
             } catch (Exception e) {
-                System.out.println("Error");
+                System.out.println(e.getMessage());
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -88,44 +80,26 @@ public class XMLParser {
             transform.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(document);
 
-            StreamResult result = new StreamResult(new File("resourses/xlout.xml"));
+            StreamResult result = new StreamResult(new File(filePath));
 
             transform.transform(source, result);
 
-
         } catch(Exception e) {
-            e.getStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
 
-    private static Node getCar(Document doc, String brandCar, String timePass, String PassingCar) {
-        Element sportCar = doc.createElement("SportCar");
- 
-        sportCar.setAttribute("BrandCar", brandCar);
- 
-        sportCar.appendChild(getCarElements(doc, sportCar, "TimePass", timePass));
-        sportCar.appendChild(getCarElements(doc, sportCar, "PassingCar", PassingCar)); 
-        
-        return sportCar;
-    }
- 
-    private static Node getCarElements(Document doc, Element element, String timePass, String value) {
-        Element node = doc.createElement(timePass);
-        node.appendChild(doc.createTextNode(value));
+    private static Node getResult(Document doc, String value) {
+        Element node = doc.createElement("Rezult");
+        node.appendChild(doc.createTextNode(value));       
         return node;
     }
-
-    public static ArrayList<Car> getCars() {
-        return cars;
-    }
-
-    public static void setCars(ArrayList<Car> caar) {
-        XMLParser.cars = new ArrayList<>(caar);
-    }
-
-    public static void setcars(Hashtable<Car, String> caar) {
-        Cars = caar;
+ 
+    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+        XMLParser parser = new XMLParser();
+        parser.Parse("src/res/ariph.xml");
+        parser.WriteXMLFile("src/res/rez.xml");
     }
     
 }
