@@ -6,17 +6,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.laba_6a.car.Car;
+
+import com.cross_cutting.Parsers.AriphmeticParser;
 
 public class ParserJson {
 
-    private static ArrayList<Car> cars_0 = new ArrayList<>();
-    private static Hashtable<Car, String> Cars = new Hashtable<Car, String>();
+    private static ArrayList<String> rawAriphStrings = new ArrayList<String>();
+    private static ArrayList<Integer> rezuList = new ArrayList<>();
 
     public void Parse(String reader) {
 
@@ -31,19 +31,15 @@ public class ParserJson {
                 e.printStackTrace();
             }
 
-            JSONArray array = (JSONArray) object.get("cars");
+            JSONArray array = (JSONArray) object.get("arifmetic");
     
             var iterator = array.iterator();
 
             while(iterator.hasNext()){
                 JSONObject temp = (JSONObject) iterator.next();
-                Car car = new Car(Double.valueOf(temp.get("Position").toString()),
-                                  Double.valueOf(temp.get("Velocity").toString()),
-                                  temp.get("Brand").toString(),
-                                  0.0d
-                );
-                
-                cars_0.add(car);
+                String result = temp.get("RawString").toString();
+                AriphmeticParser tAriphmeticParser = new AriphmeticParser(result);
+                rezuList.add(tAriphmeticParser.getResult());
             }
             
         } catch (FileNotFoundException exp) {
@@ -63,29 +59,30 @@ public class ParserJson {
       
         JSONArray array = new JSONArray();
 
-        for(var id : cars_0) {
+        for(var id : rezuList) {
             object_1 = new JSONObject();
-            object_1.put("Brand ", id.getBrand());
-            object_1.put("Time Pass", id.getRaInteger());
-            object_1.put("Passing Car", Cars.get(id));
+            object_1.put("Result ", id);
             array.add(object_1);
         }
 
-        object_0.put("time rapid", array);
+        object_0.put("Results", array);
         Files.write(Paths.get(reader), object_0.toJSONString().getBytes());
         
     }
 
-    public static void setCars(ArrayList<Car> cars) {
-        ParserJson.cars_0 = cars;
+    public static void main(String[] args) throws IOException {
+        ParserJson parserJson = new ParserJson();
+        parserJson.Parse("src/res/arif.json");
+        parserJson.WriteJsonFile("src/res/res.json");
+
     }
 
-    public static void setCars(Hashtable<Car, String> cars) {
-        ParserJson.Cars = cars;
+    public static ArrayList<String> getRawAriphStrings() {
+        return rawAriphStrings;
     }
 
-    public static ArrayList<Car> getCars() {
-        return cars_0;
+    public static ArrayList<Integer> getRezuList() {
+        return rezuList;
     }
     
 }
