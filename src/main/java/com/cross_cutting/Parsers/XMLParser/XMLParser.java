@@ -25,7 +25,7 @@ import org.w3c.dom.Node;
 
 public class XMLParser {
 
-    private static ArrayList<String> rawAriphStrings = new ArrayList<String>();
+    private static ArrayList<String> rawAriphStrings = new ArrayList<>();
     private static ArrayList<Integer> rezuList = new ArrayList<>();
 
     public void Parse(String filePath) throws ParserConfigurationException, SAXException, IOException{
