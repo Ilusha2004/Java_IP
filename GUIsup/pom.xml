@@ -2,21 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <artifactId>src</artifactId>
         <groupId>com.cross_cutting</groupId>
+        <artifactId>src</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.graphics_interf</groupId>
-    <artifactId>MenuGUI</artifactId>
+    <groupId>com.grapfx</groupId>
+    <artifactId>GUIsup</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>GUIsup</name>
+    <description>GUIsup</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.8.2</junit.version>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
@@ -30,20 +32,12 @@
             <artifactId>javafx-fxml</artifactId>
             <version>19</version>
         </dependency>
-        <dependency>
-            <groupId>org.controlsfx</groupId>
-            <artifactId>controlsfx</artifactId>
-            <version>11.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.bootstrapfx</groupId>
-            <artifactId>bootstrapfx-core</artifactId>
-            <version>0.4.0</version>
-        </dependency>
+
         <dependency>
             <groupId>com.cross_cutting</groupId>
             <artifactId>src</artifactId>
             <version>1.0.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -67,8 +61,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.graphics_interf.menugui/com.graphics_interf.menugui.HelloApplication
-                            </mainClass>
+                            <mainClass>com.grapfx.guisup/com.grapfx.guisup.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

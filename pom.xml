@@ -11,11 +11,6 @@
   <version>1.0.1</version>
 
 
-
-  <modules>
-    <module>Death</module>
-  </modules>
-
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -81,7 +76,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
       <scope>test</scope>
     </dependency>
 
@@ -89,7 +83,7 @@
     <dependency>
       <groupId>com.microsoft.azure</groupId>
       <artifactId>azure-servicebus</artifactId>
-      <version>3.0.0</version>
+      <version>3.6.7</version>
     </dependency>
 
 

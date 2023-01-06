@@ -1,4 +1,4 @@
-package com.graphics_interf.menugui;
+package com.grapfx.guisup;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
