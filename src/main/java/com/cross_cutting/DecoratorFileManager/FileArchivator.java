@@ -7,6 +7,8 @@ import java.util.jar.JarOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import static com.cross_cutting.DecoratorFileManager.FileSource.*;
+
 public class FileArchivator extends DataDecorator {
 
     public static String archivePath;
@@ -17,7 +19,24 @@ public class FileArchivator extends DataDecorator {
 
     @Override
     public void writeData(String data) throws Exception {
-        super.writeData(data);
+
+        switch (getFilePath().getExtension()) {
+            case "zip":
+                ZipArchiving();
+                super.writeData(data);
+
+            case "rar":
+                RarArchiving();
+                super.writeData(data);
+
+            case "jar":
+                JarArchiving();
+                super.writeData(data);
+
+            default:
+                throw new UnsupportedOperationException("extension are not responded");
+        }
+
     }
 
     @Override
@@ -29,10 +48,10 @@ public class FileArchivator extends DataDecorator {
     public void ZipArchiving() {
 
         try(ZipOutputStream zout = new ZipOutputStream(
-                new FileOutputStream("src/res/archiveAndEncrypt/" + FileSource.getFilePath().getName() + ".zip"));
-            FileInputStream fis = new FileInputStream(FileSource.getFilePath().getPath());) {
+                new FileOutputStream("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".zip"));
+            FileInputStream fis = new FileInputStream(getFilePath().getPath());) {
 
-            ZipEntry entry1 = new ZipEntry(FileSource.getFilePath().getPath());
+            ZipEntry entry1 = new ZipEntry(getFilePath().getPath());
             zout.putNextEntry(entry1);
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
@@ -48,10 +67,10 @@ public class FileArchivator extends DataDecorator {
     public void RarArchiving() {
 
         try(ZipOutputStream zout = new ZipOutputStream(
-                new FileOutputStream("src/res/archiveAndEncrypt/" + FileSource.getFilePath().getName() + ".rar"));
-            FileInputStream fis = new FileInputStream(FileSource.getFilePath().getPath());) {
+                new FileOutputStream("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".rar"));
+            FileInputStream fis = new FileInputStream(getFilePath().getPath());) {
 
-            ZipEntry entry1 = new ZipEntry(FileSource.getFilePath().getPath());
+            ZipEntry entry1 = new ZipEntry(getFilePath().getPath());
             zout.putNextEntry(entry1);
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
@@ -68,9 +87,9 @@ public class FileArchivator extends DataDecorator {
     public void JarArchiving() {
 
         try(JarOutputStream jarOutputStream = new JarOutputStream(
-                new FileOutputStream("src/res/archiveAndEncrypt/" + FileSource.getFilePath().getName() + ".jar"));
-            FileInputStream fis = new FileInputStream(FileSource.getFilePath().getPath());) {
-            JarEntry jarEntry = new JarEntry(FileSource.getFilePath().getPath());
+                new FileOutputStream("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".jar"));
+            FileInputStream fis = new FileInputStream(getFilePath().getPath());) {
+            JarEntry jarEntry = new JarEntry(getFilePath().getPath());
             jarOutputStream.putNextEntry(jarEntry);
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);

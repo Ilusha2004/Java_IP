@@ -15,7 +15,7 @@ public class FileDecode extends DataDecorator{
     @Override
     public void writeData(String data) throws Exception {
         if(getKey() == null) {
-            Uncode();
+            Decoding();
         }
 
         super.writeData(data);
@@ -26,7 +26,7 @@ public class FileDecode extends DataDecorator{
         return super.readData();
     }
 
-    public void Uncode() throws Exception {
+    public void Decoding() throws Exception {
         Cipher cipher_deencrypted = Cipher.getInstance("AES");
         cipher_deencrypted.init(Cipher.DECRYPT_MODE, getKey());
         byte[] cipher_deencrypted_Text = cipher_deencrypted.doFinal(new FileInputStream(FileSource.getFilePath().getPath()).readAllBytes());
@@ -38,7 +38,7 @@ public class FileDecode extends DataDecorator{
     public static void main(String[] args) throws Exception {
         FileDecode dec = new FileDecode(new FileSource("src/res/archiveAndEncrypt/encrypted_test.txt"));
 
-        dec.Uncode();
+        dec.Decoding();
 
     }
 }

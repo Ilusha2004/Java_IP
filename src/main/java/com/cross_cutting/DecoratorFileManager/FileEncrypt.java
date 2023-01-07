@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.Key;
 
+import static com.cross_cutting.DecoratorFileManager.FileSource.*;
+
 public class FileEncrypt extends DataDecorator {
 
     private static Key key;
@@ -30,10 +32,11 @@ public class FileEncrypt extends DataDecorator {
             Cipher cipher_encrypted = Cipher.getInstance("AES");
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             key = keyGenerator.generateKey();
+            System.out.println(key);
             cipher_encrypted.init(Cipher.ENCRYPT_MODE, key);
-            byte[] cipherText = cipher_encrypted.doFinal(new FileInputStream("src/res/" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension()).readAllBytes());
-            FileOutputStream fileOutputStream = new FileOutputStream("src/res/archiveAndEncrypt/encrypted_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension());
-            setEncryptedPath("src/res/archiveAndEncrypt/encrypted_" + FileSource.getFilePath().getName());
+            byte[] cipherText = cipher_encrypted.doFinal(new FileInputStream("src/res/" + getFilePath().getName() + "." + getFilePath().getExtension()).readAllBytes());
+            FileOutputStream fileOutputStream = new FileOutputStream("src/res/archiveAndEncrypt/encrypted_" + getFilePath().getName() + "." + getFilePath().getExtension());
+            setEncryptedPath("src/res/archiveAndEncrypt/encrypted_" + getFilePath().getName());
             fileOutputStream.write(cipherText);
             fileOutputStream.close();
         } catch (Exception ex) {
@@ -42,11 +45,11 @@ public class FileEncrypt extends DataDecorator {
     }
 
     public void setEncryptedPath(String encryptedPath) {
-        FileSource.getFilePath().setEncryptedPath(encryptedPath);
+        getFilePath().setEncryptedPath(encryptedPath);
     }
 
     public static String getEncryptedPath() {
-        return FileSource.getFilePath().getEncryptedPath();
+        return getFilePath().getEncryptedPath();
     }
 
     public static Key getKey() {

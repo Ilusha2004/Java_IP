@@ -7,6 +7,8 @@ import java.util.jar.JarInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static com.cross_cutting.DecoratorFileManager.FileSource.*;
+
 public class FileDeArchivator extends DataDecorator{
 
     public FileDeArchivator(DecoratorFileInterface dec) {
@@ -15,7 +17,7 @@ public class FileDeArchivator extends DataDecorator{
 
     @Override
     public void writeData(String data) throws Exception {
-        switch (FileSource.getFilePath().getExtension()) {
+        switch (getFilePath().getExtension()) {
             case "zip":
                 ZipArchiving();
                 super.writeData(data);
@@ -40,12 +42,12 @@ public class FileDeArchivator extends DataDecorator{
 
     public void ZipArchiving() {
 
-        try(ZipInputStream zin = new ZipInputStream(new FileInputStream(FileSource.getFilePath().getPath()))) {
+        try(ZipInputStream zin = new ZipInputStream(new FileInputStream(getFilePath().getPath()))) {
             ZipEntry entry;
 
             while((entry = zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/new" + FileSource.getFilePath().getName());
+                FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -65,12 +67,12 @@ public class FileDeArchivator extends DataDecorator{
 
     public void RarArchiving() {
 
-        try(ZipInputStream zin = new ZipInputStream(new FileInputStream(FileSource.getFilePath().getPath()))) {
+        try(ZipInputStream zin = new ZipInputStream(new FileInputStream(getFilePath().getPath()))) {
             ZipEntry entry;
 
             while((entry = zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/new" + FileSource.getFilePath().getName());
+                FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -90,12 +92,12 @@ public class FileDeArchivator extends DataDecorator{
 
     public void JarArchiving() {
 
-        try(JarInputStream zin = new JarInputStream(new FileInputStream(FileSource.getFilePath().getPath()))) {
+        try(JarInputStream zin = new JarInputStream(new FileInputStream(getFilePath().getPath()))) {
             JarEntry entry;
 
             while((entry = (JarEntry) zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/new" + FileSource.getFilePath().getName());
+                FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);

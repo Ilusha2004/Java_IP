@@ -15,6 +15,7 @@ public class FilePath {
 
         this.name = temp[temp.length - 2];
         this.extension = temp[temp.length - 1];
+        this.encryptedPath = path;
 
     }
 
