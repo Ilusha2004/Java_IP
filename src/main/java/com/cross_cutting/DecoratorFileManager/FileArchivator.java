@@ -16,7 +16,7 @@ public class FileArchivator extends DataDecorator {
     }
 
     @Override
-    public void writeData(String data) {
+    public void writeData(String data) throws Exception {
         super.writeData(data);
     }
 
@@ -82,7 +82,6 @@ public class FileArchivator extends DataDecorator {
         }
 
     }
-
 
     public static String getArchivePath() {
         return archivePath;
