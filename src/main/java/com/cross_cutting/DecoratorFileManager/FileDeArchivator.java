@@ -1,5 +1,7 @@
 package com.cross_cutting.DecoratorFileManager;
 
+import com.cross_cutting.HelpfulThings.FilePath;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.jar.JarEntry;
@@ -16,19 +18,19 @@ public class FileDeArchivator extends DataDecorator{
     }
 
     @Override
-    public void writeData(String data) throws Exception {
+    public void writeData() throws Exception {
         switch (getFilePath().getExtension()) {
             case "zip":
-                ZipArchiving();
-                super.writeData(data);
+                ZipDeArchiving();
+                super.writeData();
 
             case "rar":
-                RarArchiving();
-                super.writeData(data);
+                RarDeArchiving();
+                super.writeData();
 
             case "jar":
-                JarArchiving();
-                super.writeData(data);
+                JarDeArchiving();
+                super.writeData();
 
             default:
                 throw new UnsupportedOperationException("extension are not responded");
@@ -40,7 +42,7 @@ public class FileDeArchivator extends DataDecorator{
         return super.readData();
     }
 
-    public void ZipArchiving() {
+    public void ZipDeArchiving() {
 
         try(ZipInputStream zin = new ZipInputStream(new FileInputStream(getFilePath().getPath()))) {
             ZipEntry entry;
@@ -48,6 +50,8 @@ public class FileDeArchivator extends DataDecorator{
             while((entry = zin.getNextEntry()) != null) {
 
                 FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
+                FileSource.setPath(new FilePath("src/res/new" + getFilePath().getName() + ".txt"));
+                FileSource.setname("new" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -65,7 +69,7 @@ public class FileDeArchivator extends DataDecorator{
 
     }
 
-    public void RarArchiving() {
+    public void RarDeArchiving() {
 
         try(ZipInputStream zin = new ZipInputStream(new FileInputStream(getFilePath().getPath()))) {
             ZipEntry entry;
@@ -73,6 +77,8 @@ public class FileDeArchivator extends DataDecorator{
             while((entry = zin.getNextEntry()) != null) {
 
                 FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
+                FileSource.setPath(new FilePath("src/res/new" + getFilePath().getName() + ".txt"));
+                FileSource.setname("new" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -90,7 +96,7 @@ public class FileDeArchivator extends DataDecorator{
 
     }
 
-    public void JarArchiving() {
+    public void JarDeArchiving() {
 
         try(JarInputStream zin = new JarInputStream(new FileInputStream(getFilePath().getPath()))) {
             JarEntry entry;
@@ -98,6 +104,8 @@ public class FileDeArchivator extends DataDecorator{
             while((entry = (JarEntry) zin.getNextEntry()) != null) {
 
                 FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
+                FileSource.setPath(new FilePath("src/res/new" + getFilePath().getName() + ".txt"));
+                FileSource.setname("new" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -118,7 +126,7 @@ public class FileDeArchivator extends DataDecorator{
     public static void main(String[] args) {
         try {
             FileDeArchivator decArc = new FileDeArchivator(new FileSource("src/res/archiveAndEncrypt/res.zip"));
-            decArc.ZipArchiving();
+            decArc.ZipDeArchiving();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

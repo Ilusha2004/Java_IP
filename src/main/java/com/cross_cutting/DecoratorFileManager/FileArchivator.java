@@ -1,5 +1,7 @@
 package com.cross_cutting.DecoratorFileManager;
 
+import com.cross_cutting.HelpfulThings.FilePath;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.jar.JarEntry;
@@ -18,25 +20,10 @@ public class FileArchivator extends DataDecorator {
     }
 
     @Override
-    public void writeData(String data) throws Exception {
-
-        switch (getFilePath().getExtension()) {
-            case "zip":
-                ZipArchiving();
-                super.writeData(data);
-
-            case "rar":
-                RarArchiving();
-                super.writeData(data);
-
-            case "jar":
-                JarArchiving();
-                super.writeData(data);
-
-            default:
-                throw new UnsupportedOperationException("extension are not responded");
-        }
-
+    public void writeData() throws Exception {
+        ZipArchiving();
+        FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".zip"));
+        super.writeData();
     }
 
     @Override
@@ -89,6 +76,7 @@ public class FileArchivator extends DataDecorator {
         try(JarOutputStream jarOutputStream = new JarOutputStream(
                 new FileOutputStream("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".jar"));
             FileInputStream fis = new FileInputStream(getFilePath().getPath());) {
+
             JarEntry jarEntry = new JarEntry(getFilePath().getPath());
             jarOutputStream.putNextEntry(jarEntry);
             byte[] buffer = new byte[fis.available()];

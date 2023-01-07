@@ -12,6 +12,14 @@ public class FileSource implements DecoratorFileInterface {
         this.path = new FilePath(path);
     }
 
+    public static void setname(String name) {
+        FileSource.path.setFirstName(name);
+    }
+
+    public static void setextension(String extension) {
+        FileSource.path.setFirstExtension(extension);
+    }
+
     public static FilePath getFilePath() {
         return path;
     }
@@ -21,14 +29,9 @@ public class FileSource implements DecoratorFileInterface {
     }
 
     @Override
-    public void writeData(String data) {
-
-        File file = new File(path.getPath());
-        try (OutputStream fos = new FileOutputStream(file)) {
-            fos.write(data.getBytes(), 0, data.length());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void writeData() {
+        System.out.println(FileSource.getFilePath().getName());
+        System.out.println("Finish");
     }
 
     @Override
