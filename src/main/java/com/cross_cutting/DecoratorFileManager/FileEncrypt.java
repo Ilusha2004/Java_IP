@@ -8,9 +8,6 @@ import java.security.Key;
 
 public class FileEncrypt extends DataDecorator {
 
-    private static Key key;
-    private static String encryptedPath;
-
     public FileEncrypt(DecoratorFileInterface dec) {
         super(dec);
     }
@@ -26,31 +23,37 @@ public class FileEncrypt extends DataDecorator {
     }
 
     public void Encrypt() throws Exception {
-        Cipher cipher_encrypted = Cipher.getInstance("AES");
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-        key = keyGenerator.generateKey();
-        cipher_encrypted.init(Cipher.ENCRYPT_MODE, key);
-        byte[] cipherText = cipher_encrypted.doFinal(new FileInputStream(FileSource.getPath()).readAllBytes());
-        FileOutputStream fileOutputStream = new FileOutputStream(FileSource.getPath());
-        setEncryptedPath("resourses/archiveAndEncr/encrypted_" + FileSource.getPath());
-        fileOutputStream.write(cipherText);
-        fileOutputStream.close();
+        try {
+            Cipher cipher_encrypted = Cipher.getInstance("AES");
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+            Key key = keyGenerator.generateKey();
+            cipher_encrypted.init(Cipher.ENCRYPT_MODE, key);
+            System.out.println(key.getEncoded());
+            byte[] cipherText = cipher_encrypted.doFinal(new FileInputStream("src/res/" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension()).readAllBytes());
+            FileOutputStream fileOutputStream = new FileOutputStream("src/res/archiveAndEncrypt/encrypted_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension());
+            setEncryptedPath("src/res/archiveAndEncrypt/encrypted_" + FileSource.getFilePath().getName());
+            fileOutputStream.write(cipherText);
+            fileOutputStream.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setEncryptedPath(String encryptedPath) {
-        this.encryptedPath = encryptedPath;
+        FileSource.getFilePath().setEncryptedPath(encryptedPath);
     }
 
     public static String getEncryptedPath() {
-        return encryptedPath;
+        return FileSource.getFilePath().getEncryptedPath();
     }
 
-    public static Key getKey() {
-        return key;
-    }
-
-    public static void setKey(Key key) {
-        FileEncrypt.key = key;
+    public static void main(String[] args) throws Exception {
+        try {
+            FileEncrypt fen = new FileEncrypt(new FileSource("src/res/test.txt"));
+            fen.Encrypt();
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }
