@@ -19,22 +19,27 @@ public class FileDeArchivator extends DataDecorator{
 
     @Override
     public void writeData() throws Exception {
-        switch (getFilePath().getExtension()) {
-            case "zip":
-                ZipDeArchiving();
-                super.writeData();
 
-            case "rar":
-                RarDeArchiving();
-                super.writeData();
+        System.out.println(getFilePath().getExtension());
 
-            case "jar":
-                JarDeArchiving();
-                super.writeData();
-
-            default:
-                throw new UnsupportedOperationException("extension are not responded");
+        if(getFilePath().getExtension().equals("zip")) {
+            System.out.println("hui");
+            ZipDeArchiving();
         }
+        else if (getFilePath().getExtension().equals("rar")) {
+            System.out.println("hui");
+            RarDeArchiving();
+        }
+        else if (getFilePath().getExtension().equals("jar")) {
+            JarDeArchiving();
+        }
+
+        System.out.println("DeArchive part");
+        System.out.println(FileSource.getFilePath().getFirstExtension());
+        System.out.println(FileSource.getFilePath().getExtension());
+
+        super.writeData();
+
     }
 
     @Override
@@ -43,15 +48,18 @@ public class FileDeArchivator extends DataDecorator{
     }
 
     public void ZipDeArchiving() {
+        System.out.println("lghksbfkbgkshdfgkdsf");
+        System.out.println(getFilePath().getPath());
+        System.out.println("lghksbfkbgkshdfgkdsf");
 
         try(ZipInputStream zin = new ZipInputStream(new FileInputStream(getFilePath().getPath()))) {
             ZipEntry entry;
 
             while((entry = zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
-                FileSource.setPath(new FilePath("src/res/new" + getFilePath().getName() + ".txt"));
-                FileSource.setname("new" + getFilePath().getName());
+                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension());
+                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()));
+                FileSource.setname("new_" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -76,9 +84,9 @@ public class FileDeArchivator extends DataDecorator{
 
             while((entry = zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
-                FileSource.setPath(new FilePath("src/res/new" + getFilePath().getName() + ".txt"));
-                FileSource.setname("new" + getFilePath().getName());
+                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension());
+                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()));
+                FileSource.setname("new_" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -103,9 +111,9 @@ public class FileDeArchivator extends DataDecorator{
 
             while((entry = (JarEntry) zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/new" + getFilePath().getName());
-                FileSource.setPath(new FilePath("src/res/new" + getFilePath().getName() + ".txt"));
-                FileSource.setname("new" + getFilePath().getName());
+                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension());
+                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()));
+                FileSource.setname("new_" + getFilePath().getName());
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -121,15 +129,6 @@ public class FileDeArchivator extends DataDecorator{
             System.out.println(ex.getMessage());
         }
 
-    }
-
-    public static void main(String[] args) {
-        try {
-            FileDeArchivator decArc = new FileDeArchivator(new FileSource("src/res/archiveAndEncrypt/res.zip"));
-            decArc.ZipDeArchiving();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
 }
