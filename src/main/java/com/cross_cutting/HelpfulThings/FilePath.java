@@ -3,7 +3,6 @@ package com.cross_cutting.HelpfulThings;
 public class FilePath {
 
     private static String name;
-    private static String encryptedPath;
     private static String path;
     private static String extension;
     private static String firstExtension;
@@ -17,7 +16,6 @@ public class FilePath {
         this.path           = path;
         this.name           = temp[temp.length - 2];
         this.extension      = temp[temp.length - 1];
-        this.encryptedPath  = path;
 
     }
 
@@ -35,14 +33,6 @@ public class FilePath {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEncryptedPath() {
-        return encryptedPath;
-    }
-
-    public void setEncryptedPath(String encryptedPath) {
-        this.encryptedPath = encryptedPath;
     }
 
     public String getExtension() {

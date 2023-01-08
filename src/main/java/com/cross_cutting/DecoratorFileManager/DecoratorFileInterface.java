@@ -1,6 +1,6 @@
 package com.cross_cutting.DecoratorFileManager;
 
 public interface DecoratorFileInterface {
-    void writeData(String data);
+    void writeData() throws Exception;
     String readData();
 }

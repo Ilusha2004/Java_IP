@@ -9,8 +9,8 @@ public class DataDecorator implements DecoratorFileInterface{
     }
 
     @Override
-    public void writeData(String data) {
-        dec.writeData(data);
+    public void writeData() throws Exception {
+        dec.writeData();
     }
 
     @Override
