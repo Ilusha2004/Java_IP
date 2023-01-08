@@ -22,7 +22,7 @@ public class DeArchive {
 
     public void ZipArchivation() {
 
-        try(ZipInputStream zout = new ZipInputStream(new FileInputStream("src/res/archiveAndEncr/" + name + ".zip"));
+        try(ZipInputStream zout = new ZipInputStream(new FileInputStream(this.name + ".zip"));
             FileOutputStream fout = new FileOutputStream("src/res/" + path);) {
 
             for (int c = zout.read(); c != -1; c = zout.read()) {
@@ -47,7 +47,7 @@ public class DeArchive {
             String Name;
             long size;
 
-            while((entry=zin.getNextEntry())!=null){
+            while((entry = zin.getNextEntry()) != null) {
 
                 Name = entry.getName(); // получим название файла
                 size=entry.getSize();  // получим его размер в байтах
@@ -73,7 +73,7 @@ public class DeArchive {
 
     public void JarArchiving() {
 
-        try(JarOutputStream jarOutputStream = new JarOutputStream(new FileOutputStream("resourses/archiveAndEncr/" + name + ".jar"));
+        try(JarOutputStream jarOutputStream = new JarOutputStream(new FileOutputStream(this.name + ".jar"));
             FileInputStream fis = new FileInputStream("resourses/" + path);) {
                 JarEntry jarEntry = new JarEntry(path);
                 jarOutputStream.putNextEntry(jarEntry);
@@ -94,6 +94,7 @@ public class DeArchive {
         System.out.println(archive.name + "\n" + archive.path + "\n" + archive.extension);
 
         archive.ZipDeArchiving();
+
 
     }
 
