@@ -18,7 +18,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#Delete" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -26,6 +26,11 @@
               <MenuItem fx:id="item" mnemonicParsing="false" onAction="#About" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Web">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#Web" text="Show localhost" />
+              </items>
+            </Menu>
         </menus>
          <cursor>
             <Cursor fx:constant="HAND" />
