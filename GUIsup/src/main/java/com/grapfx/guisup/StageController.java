@@ -18,7 +18,9 @@ public class StageController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private final Scenes scenes = new Scenes();
+    private int counter = 0;
+    private static Scenes scenes = new Scenes();
+
 
     @FXML
     Button closeButton;
@@ -27,7 +29,7 @@ public class StageController {
     @FXML
     Label label;
 
-    public void Switch(ActionEvent event) throws IOException {
+    public void Switch(ActionEvent event, int count) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(scenes.getAllPath().get(scenes.getCounter())));
         root = loader.load(getClass().getResource(scenes.getAllPath().get(scenes.getCounter())));
         this.stage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -39,13 +41,21 @@ public class StageController {
     }
 
     public void MainThemeController(ActionEvent event) throws IOException {
-        scenes.Increase();
-        Switch(event);
+        System.out.println(scenes.getClass().getAnnotations());
+        try {
+            scenes.Increase();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        Switch(event, counter);
+        System.out.println(counter);
     }
 
     public void PrevScene(ActionEvent event) throws IOException {
         scenes.Decrease();
-        Switch(event);
+        Switch(event, counter);
+        System.out.println(counter);
     }
 
     public void Close() {
