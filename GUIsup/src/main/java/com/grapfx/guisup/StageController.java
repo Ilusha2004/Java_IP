@@ -6,13 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class StageController {
 
@@ -21,7 +19,7 @@ public class StageController {
     private Parent root;
     private static Scenes scenes = new Scenes();
 
-
+    //------------------------------------------------------------------------------------------------------------------
     @FXML
     Button closeButton;
     @FXML
@@ -68,6 +66,7 @@ public class StageController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
+
     @FXML
     CheckBox boxFir;
     @FXML
@@ -88,6 +87,47 @@ public class StageController {
             label_1.setText("compress");
             System.out.println("compress");
         }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @FXML
+    private RadioButton button_0, button_1, button_2, button_3, button_4, button_5;
+
+    public void ChangeExtensions(ActionEvent event) {
+        if(button_0.isSelected()) {
+            System.out.println("zip");
+        }
+        else if(button_1.isSelected()) {
+            System.out.println("rar");
+        }
+        else if(button_2.isSelected()) {
+            System.out.println("jar");
+        }
+        else if(button_3.isSelected()) {
+            System.out.println("json");
+        }
+        else if(button_4.isSelected()) {
+            System.out.println("xml");
+        }
+        else if(button_5.isSelected()) {
+            System.out.println("txt");
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    //WTF Section
+
+    @FXML
+    Label label_2;
+
+    String extensions[] = { "zip", "rar", "jar", "json", "xml", "txt" };
+
+
+    public void FTW(ActionEvent event) {
+        Random random = new Random();
+        int pos = random.nextInt(extensions.length);
+        label_2.setText(extensions[pos]);
     }
 
 }
