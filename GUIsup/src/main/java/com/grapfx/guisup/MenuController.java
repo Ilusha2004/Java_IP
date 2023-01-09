@@ -58,4 +58,28 @@ public class MenuController {
         }
     }
 
+    public void Delete(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("FTWExtension.fxml"));
+            stage.setTitle("Java_IP");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void Web(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("WebSup.fxml"));
+            stage.setTitle("Java_IP");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
