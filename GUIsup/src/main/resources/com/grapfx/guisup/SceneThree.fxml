@@ -2,12 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grapfx.guisup.StageController">
    <children>
@@ -19,12 +19,15 @@
       <HBox layoutX="166.0" layoutY="160.0" prefHeight="25.0" prefWidth="149.0" />
       <Pane layoutX="32.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <RadioButton layoutX="22.0" layoutY="21.0" mnemonicParsing="false" text=".zip" />
-            <RadioButton layoutX="22.0" layoutY="44.0" mnemonicParsing="false" text=".rar" />
-            <RadioButton layoutX="22.0" layoutY="67.0" mnemonicParsing="false" text=".jar" />
-            <RadioButton layoutX="22.0" layoutY="92.0" mnemonicParsing="false" text=".json" />
-            <RadioButton layoutX="22.0" layoutY="116.0" mnemonicParsing="false" text=".xml" />
-            <RadioButton layoutX="22.0" layoutY="138.0" mnemonicParsing="false" text=".txt" />
+            <RadioButton fx:id="button_0" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".zip">
+               <toggleGroup>
+                  <ToggleGroup fx:id="extensions" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="button_1" layoutX="22.0" layoutY="44.0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".rar" toggleGroup="$extensions" />
+            <RadioButton fx:id="button_2" layoutX="22.0" layoutY="67.0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".jar" toggleGroup="$extensions" />
+            <RadioButton fx:id="button_3" layoutX="22.0" layoutY="92.0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".json" toggleGroup="$extensions" />
+            <RadioButton fx:id="button_4" layoutX="22.0" layoutY="116.0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".xml" toggleGroup="$extensions" />
+            <RadioButton fx:id="button_5" layoutX="22.0" layoutY="138.0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".txt" toggleGroup="$extensions" />
          </children>
       </Pane>
       <Text layoutX="39.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose input extension" wrappingWidth="186.5703125" />
