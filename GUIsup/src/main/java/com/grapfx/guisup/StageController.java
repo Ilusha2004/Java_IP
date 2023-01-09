@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,16 +17,21 @@ public class StageController {
 
     private Stage stage;
     private Scene scene;
-    private Parent parent;
+    private Parent root;
     private final Scenes scenes = new Scenes();
 
     @FXML
-    public Button closeButton;
+    Button closeButton;
+    @FXML
+    TextField textField;
+    @FXML
+    Label label;
 
     public void Switch(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(scenes.getAllPath().get(scenes.getCounter())));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(scenes.getAllPath().get(scenes.getCounter())));
+        root = loader.load(getClass().getResource(scenes.getAllPath().get(scenes.getCounter())));
         this.stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         System.out.println(scenes.getCounter());
         this.stage.setScene(scene);
         this.stage.show();
@@ -46,4 +53,10 @@ public class StageController {
         stage = (Stage) closeButton.getScene().getWindow();
         this.stage.close();
     }
+
+    public void NewPath(ActionEvent event) throws IOException {
+        String path = textField.getText();
+        label.setText("Path : " + path);
+    }
+
 }
