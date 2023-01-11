@@ -1,11 +1,10 @@
 package com.cross_cutting.Uncrypt;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.Key;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 
 public class UnCrypt {
 
@@ -25,6 +24,7 @@ public class UnCrypt {
         byte[] cipherText = cipher_encrypted.doFinal(new FileInputStream("resourses/" + path).readAllBytes());
         FileOutputStream fileOutputStream = new FileOutputStream("resourses/archiveAndEncr/encrypted_" + path);
         setEncryptedPath("resourses/archiveAndEncr/encrypted_" + path);
+
         fileOutputStream.write(cipherText);
         fileOutputStream.close();
     }

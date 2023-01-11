@@ -53,7 +53,6 @@ public class DeArchive {
                 size=entry.getSize();  // получим его размер в байтах
                 System.out.printf("File name: %s \t File size: %d \n", Name, size);
 
-                // распаковка
                 FileOutputStream fout = new FileOutputStream("src/res/" + Name);
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {

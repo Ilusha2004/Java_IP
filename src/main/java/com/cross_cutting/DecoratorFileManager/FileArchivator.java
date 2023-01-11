@@ -1,5 +1,6 @@
 package com.cross_cutting.DecoratorFileManager;
 
+import com.cross_cutting.EnumTypes.Extensions;
 import com.cross_cutting.HelpfulThings.FilePath;
 
 import java.io.FileInputStream;
@@ -10,6 +11,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import static com.cross_cutting.DecoratorFileManager.FileSource.getFilePath;
+import static com.cross_cutting.DecoratorFileManager.FileSource.getInExtension;
 
 public class FileArchivator extends DataDecorator {
 
@@ -21,7 +23,17 @@ public class FileArchivator extends DataDecorator {
 
     @Override
     public void writeData() throws Exception {
-        ZipArchiving();
+
+        if(getInExtension().equals(Extensions.ZIP)) {
+            ZipArchiving();
+        }
+        else if(getInExtension().equals(Extensions.JAR)) {
+            JarArchiving();
+        }
+        else if(getInExtension().equals(Extensions.RAR)) {
+            RarArchiving();
+        }
+
         FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".zip"));
         System.out.println("Archive part");
         super.writeData();
@@ -53,7 +65,6 @@ public class FileArchivator extends DataDecorator {
     }
 
     public void RarArchiving() {
-
         try(ZipOutputStream zout = new ZipOutputStream(
                 new FileOutputStream("src/res/archiveAndEncrypt/" + getFilePath().getName() + ".rar"));
             FileInputStream fis = new FileInputStream(getFilePath().getPath());) {

@@ -1,5 +1,6 @@
 package com.cross_cutting.DecoratorFileManager;
 
+import com.cross_cutting.EnumTypes.Extensions;
 import com.cross_cutting.HelpfulThings.FilePath;
 
 import java.io.FileInputStream;
@@ -20,23 +21,17 @@ public class FileDeArchivator extends DataDecorator{
     @Override
     public void writeData() throws Exception {
 
-        System.out.println(getFilePath().getExtension());
-
-        if(getFilePath().getExtension().equals("zip")) {
-            System.out.println("hui");
+        if(getInExtension().equals(Extensions.ZIP)) {
             ZipDeArchiving();
         }
-        else if (getFilePath().getExtension().equals("rar")) {
-            System.out.println("hui");
-            RarDeArchiving();
-        }
-        else if (getFilePath().getExtension().equals("jar")) {
+        else if(getInExtension().equals(Extensions.JAR)) {
             JarDeArchiving();
+        }
+        else if(getInExtension().equals(Extensions.RAR)) {
+            RarDeArchiving();
         }
 
         System.out.println("DeArchive part");
-        System.out.println(FileSource.getFilePath().getFirstExtension());
-        System.out.println(FileSource.getFilePath().getExtension());
 
         super.writeData();
 
@@ -48,9 +43,6 @@ public class FileDeArchivator extends DataDecorator{
     }
 
     public void ZipDeArchiving() {
-        System.out.println("lghksbfkbgkshdfgkdsf");
-        System.out.println(getFilePath().getPath());
-        System.out.println("lghksbfkbgkshdfgkdsf");
 
         try(ZipInputStream zin = new ZipInputStream(new FileInputStream(getFilePath().getPath()))) {
             ZipEntry entry;

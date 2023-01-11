@@ -59,13 +59,4 @@ public class FileEncrypt extends DataDecorator {
         this.key = key;
     }
 
-    public static void main(String[] args) throws Exception {
-        try {
-            FileEncrypt fen = new FileEncrypt(new FileSource("src/res/test.txt"));
-            fen.Encrypt();
-        }catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
 }

@@ -40,10 +40,4 @@ public class FileDecode extends DataDecorator{
         fileOutputStream.close();
     }
 
-    public static void main(String[] args) throws Exception {
-        FileDecode dec = new FileDecode(new FileSource("src/res/archiveAndEncrypt/encrypted_test.txt"));
-
-        dec.Decoding();
-
-    }
 }

@@ -7,5 +7,5 @@ public enum Extensions {
     TXT,
     TEXT,
     ZIP,
-    RAR
+    JAR, RAR
 }
