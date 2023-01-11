@@ -1,14 +1,21 @@
 package com.cross_cutting.DecoratorFileManager;
 
+import com.cross_cutting.EnumTypes.Actions;
+import com.cross_cutting.EnumTypes.Extensions;
 import com.cross_cutting.HelpfulThings.FilePath;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class FileSource implements DecoratorFileInterface {
 
     private static FilePath path;
+    private static Extensions inExtension;
+    private static Extensions outExtension;
+    private static Actions actions;
 
-    public FileSource(String path) {
+    public FileSource(String path, Extensions inExtension, Extensions outExtension, Actions actions) {
         this.path = new FilePath(path);
     }
 
@@ -28,9 +35,20 @@ public class FileSource implements DecoratorFileInterface {
         FileSource.path = path;
     }
 
+    public static Extensions getInExtension() {
+        return inExtension;
+    }
+
+    public static Extensions getOutExtension() {
+        return outExtension;
+    }
+
+    public static Actions getActions() {
+        return actions;
+    }
+
     @Override
     public void writeData() {
-        System.out.println(FileSource.getFilePath().getName());
         System.out.println("Finish");
     }
 
