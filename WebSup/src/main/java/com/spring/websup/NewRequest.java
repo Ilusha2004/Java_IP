@@ -10,8 +10,6 @@ import com.cross_cutting.EnumTypes.Extensions;
 @RequestMapping("api/calculate")
 
 public class NewRequest {
-
-
     @GetMapping("add/{firstArg}/{secondArg}")
     public String Add(@PathVariable Extensions firstArg, @PathVariable Double secondArg) {
         return String.format("Hello %s!", firstArg);
