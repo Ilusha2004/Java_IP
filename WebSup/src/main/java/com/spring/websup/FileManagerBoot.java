@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SpringBoot {
+public class FileManagerBoot {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBoot.class, args);
+        SpringApplication.run(FileManagerBoot.class, args);
     }
 
     @GetMapping
