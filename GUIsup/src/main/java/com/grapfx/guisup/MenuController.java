@@ -16,6 +16,7 @@ public class MenuController {
     @FXML
     Button but;
 
+
     public void About(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "This is application was made by KoVLya");
         alert.showAndWait();

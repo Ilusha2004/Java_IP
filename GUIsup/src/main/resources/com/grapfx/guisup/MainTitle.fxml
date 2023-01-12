@@ -9,12 +9,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grapfx.guisup.StageController">
    <children>
-      <Button layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#MainThemeController" prefHeight="25.0" prefWidth="52.0" text="next" />
-      <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="25.0" prefWidth="64.0" text="cancel" />
-      <Button layoutX="375.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="prev" />
-      <Line endX="499.0" layoutX="100.0" layoutY="57.0" startX="-100.0" />
-      <Line endX="508.0" layoutX="92.0" layoutY="327.0" startX="-100.0" />
-      <Text layoutX="177.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to program">
+      <Button defaultButton="true" layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#MainThemeController" prefHeight="35.0" prefWidth="54.0" text="next" />
+      <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" text="cancel" />
+      <Button disable="true" layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" text="prev" textOverrun="CLIP" />
+      <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0" />
+      <Line endX="499.0" layoutX="101.0" layoutY="330.0" startX="-100.0" strokeWidth="4.0" />
+      <Text layoutX="177.0" layoutY="42.0" lineSpacing="1.0" stroke="#d04444" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to program">
          <font>
             <Font size="26.0" />
          </font>
