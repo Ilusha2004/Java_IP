@@ -7,7 +7,6 @@
 <?import javafx.scene.effect.DisplacementMap?>
 <?import javafx.scene.effect.FloatMap?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -38,7 +37,6 @@
                </stops>
             </LinearGradient>
          </stroke></Line>
-      <Pane layoutX="221.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
       <Text disable="true" fontSmoothingType="LCD" layoutX="41.0" layoutY="40.0" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose input extension" wrappingWidth="295.5703125">
          <font>
             <Font size="24.0" />
@@ -64,34 +62,34 @@
       <VBox alignment="CENTER_LEFT" layoutX="72.0" layoutY="95.0" prefHeight="185.0" prefWidth="149.0">
          <children>
             <RadioButton fx:id="button_0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".zip">
+               <font>
+                  <Font size="24.0" />
+               </font>
                <toggleGroup>
-                  <ToggleGroup fx:id="extensions" />
+                  <ToggleGroup fx:id="extens" />
                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="button_1" mnemonicParsing="false" onAction="#ChangeExtensions" text=".rar" toggleGroup="$extens">
                <font>
                   <Font size="24.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_1" mnemonicParsing="false" onAction="#ChangeExtensions" text=".rar" toggleGroup="$extensions">
+            <RadioButton fx:id="button_2" mnemonicParsing="false" onAction="#ChangeExtensions" text=".jar" toggleGroup="$extens">
                <font>
                   <Font size="24.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_2" mnemonicParsing="false" onAction="#ChangeExtensions" text=".jar" toggleGroup="$extensions">
+            <RadioButton fx:id="button_3" mnemonicParsing="false" onAction="#ChangeExtensions" text=".json" toggleGroup="$extens">
                <font>
                   <Font size="24.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_3" mnemonicParsing="false" onAction="#ChangeExtensions" text=".json" toggleGroup="$extensions">
+            <RadioButton fx:id="button_4" mnemonicParsing="false" onAction="#ChangeExtensions" text=".xml" toggleGroup="$extens">
                <font>
                   <Font size="24.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_4" mnemonicParsing="false" onAction="#ChangeExtensions" text=".xml" toggleGroup="$extensions">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="button_5" mnemonicParsing="false" onAction="#ChangeExtensions" text=".txt" toggleGroup="$extensions">
+            <RadioButton fx:id="button_5" mnemonicParsing="false" onAction="#ChangeExtensions" text=".txt" toggleGroup="$extens">
                <font>
                   <Font size="24.0" />
                </font>

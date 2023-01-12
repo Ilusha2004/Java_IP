@@ -34,11 +34,14 @@ public class CreateActionForFile {
 
         if (actions.equals(Actions.ARCHIVE)) {
             dec = new FileArchivator(new FileSource(path, inExtension, outExtension, actions));
-        } else if (actions.equals(Actions.ENCRYPT)) {
+        }
+        else if (actions.equals(Actions.ENCRYPT)) {
             dec = new FileEncrypt(new FileSource(path, inExtension, outExtension, actions));
-        } else if (actions.equals(Actions.ARCHIVE_AND_ENCRYPT)) {
+        }
+        else if (actions.equals(Actions.ARCHIVE_AND_ENCRYPT)) {
             dec = new FileArchivator(new FileEncrypt(new FileSource(path, inExtension, outExtension, actions)));
-        } else if (actions.equals(Actions.ENCRYPT_AND_ARCHIVE)) {
+        }
+        else if (actions.equals(Actions.ENCRYPT_AND_ARCHIVE)) {
             dec = new FileEncrypt(new FileArchivator(new FileSource(path, inExtension, outExtension, actions)));
         }
 
@@ -49,4 +52,5 @@ public class CreateActionForFile {
         dec.readData();
         dec.writeData();
     }
+
 }

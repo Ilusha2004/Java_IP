@@ -16,69 +16,39 @@ public class MenuController {
     @FXML
     Button but;
 
-
-    public void About(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "This is application was made by KoVLya");
-        alert.showAndWait();
-
+    public void CreateScene(String FXMLPath) {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("About.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(FXMLPath));
             stage.setTitle("Java");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
 
+
+    public void About(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "This is application was made by KoVLya");
+        alert.showAndWait();
+        CreateScene("About.fxml");
     }
 
     public void NewFile(ActionEvent event) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("MainTitle.fxml"));
-            stage.setTitle("Java_IP");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        CreateScene("MainTitle.fxml");
     }
 
     public void SaveAs(ActionEvent event) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("SaveAs.fxml"));
-            stage.setTitle("Java_IP");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        CreateScene("SaveAs.fxml");
     }
 
     public void Delete(ActionEvent event) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("FTWExtension.fxml"));
-            stage.setTitle("Java_IP");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        CreateScene("FTWExtension.fxml");
     }
 
     public void Web(ActionEvent event) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("WebSup.fxml"));
-            stage.setTitle("Java_IP");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        CreateScene("WebSup.fxml");
     }
 
 }

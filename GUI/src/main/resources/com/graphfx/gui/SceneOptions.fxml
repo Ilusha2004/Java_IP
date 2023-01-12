@@ -13,9 +13,9 @@
 
 <AnchorPane depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
    <children>
-      <Button layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#MainThemeController" prefHeight="35.0" prefWidth="54.0" text="next" />
+      <Button fx:id="buttonNext" layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#EndAction" prefHeight="35.0" prefWidth="54.0" text="next" />
       <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" text="cancel" />
-      <Button layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" text="prev" textOverrun="CLIP" />
+      <Button fx:id="buttonPrev" layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" text="prev" textOverrun="CLIP" />
       <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0">
@@ -70,5 +70,13 @@
             </LinearGradient>
          </stroke>
       </Line>
+      <CheckBox fx:id="boxReverse" alignment="TOP_LEFT" layoutX="287.0" layoutY="183.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="115.0" text="Reverse" textOverrun="CLIP">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </CheckBox>
    </children>
 </AnchorPane>

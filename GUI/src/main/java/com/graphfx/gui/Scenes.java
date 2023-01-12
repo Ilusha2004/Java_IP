@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Scenes {
-    private List<String> allPath = Arrays.asList("MainTitle.fxml", "SceneTwo.fxml", "SceneThree.fxml", "SceneOptions.fxml");
+    private List<String> allPath = Arrays.asList("MainTitle.fxml", "SceneTwo.fxml", "SceneThree.fxml", "SceneOptions.fxml", "FinishScene.fxml");
     private int counter = 0;
 
     public void Increase() {
@@ -26,5 +26,9 @@ public class Scenes {
 
     public int getCounter() {
         return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }
