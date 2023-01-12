@@ -13,5 +13,6 @@
       </Text>
       <Text layoutX="202.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ver. 0.0.10" wrappingWidth="56.162109375" />
 
+
    </children>
 </AnchorPane>
