@@ -36,11 +36,13 @@
                   </Stop>
                </stops>
             </LinearGradient>
-         </stroke></Line>
-      <Text disable="true" fontSmoothingType="LCD" layoutX="41.0" layoutY="40.0" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose archive extension" wrappingWidth="295.5703125">
+         </stroke>
+      </Line>
+      <Text disable="true" fontSmoothingType="LCD" layoutX="43.0" layoutY="40.0" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose in and out extension" wrappingWidth="385.5703125">
          <font>
             <Font size="24.0" />
-         </font></Text>
+         </font>
+      </Text>
       <Line endX="499.0" layoutX="101.0" layoutY="330.0" startX="-100.0" strokeWidth="4.0">
          <stroke>
             <LinearGradient cycleMethod="REFLECT" endX="0.6350710900473933" endY="1.0">
@@ -59,22 +61,54 @@
             </LinearGradient>
          </stroke>
       </Line>
-      <VBox alignment="CENTER_LEFT" layoutX="72.0" layoutY="95.0" prefHeight="185.0" prefWidth="149.0">
+      <VBox alignment="CENTER_LEFT" layoutX="76.0" layoutY="115.0" prefHeight="185.0" prefWidth="149.0">
          <children>
-            <RadioButton fx:id="button_0" mnemonicParsing="false" onAction="#ChangeExtensions" text=".zip">
+            <RadioButton fx:id="buttonIn_0" mnemonicParsing="false" onAction="#ChangeInOutExtensions" text=".xml">
                <font>
                   <Font size="24.0" />
                </font>
                <toggleGroup>
-                  <ToggleGroup fx:id="extens" />
+                  <ToggleGroup fx:id="inExtension" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="button_1" mnemonicParsing="false" onAction="#ChangeExtensions" text=".rar" toggleGroup="$extens">
+            <RadioButton fx:id="buttonIn_1" mnemonicParsing="false" onAction="#ChangeInOutExtensions" text=".json" toggleGroup="$inExtension">
                <font>
                   <Font size="24.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="button_2" mnemonicParsing="false" onAction="#ChangeExtensions" text=".jar" toggleGroup="$extens">
+            <RadioButton fx:id="buttonIn_2" mnemonicParsing="false" onAction="#ChangeInOutExtensions" text=".txt" toggleGroup="$inExtension">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </RadioButton>
+         </children>
+         <opaqueInsets>
+            <Insets top="1.0" />
+         </opaqueInsets>
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+            </DisplacementMap>
+         </effect>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="369.0" layoutY="115.0" prefHeight="185.0" prefWidth="149.0">
+         <children>
+            <RadioButton fx:id="buttonOut_0" mnemonicParsing="false" onAction="#ChangeInOutExtensions" text=".xml">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="outExtension" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="buttonOut_1" mnemonicParsing="false" onAction="#ChangeInOutExtensions" text=".json" toggleGroup="$outExtension">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="buttonOut_2" mnemonicParsing="false" onAction="#ChangeInOutExtensions" text=".txt" toggleGroup="$outExtension">
                <font>
                   <Font size="24.0" />
                </font>

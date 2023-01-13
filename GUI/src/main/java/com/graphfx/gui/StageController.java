@@ -3,7 +3,6 @@ package com.graphfx.gui;
 import cross_cutting.DecoratorFileManager.CreateActionForFile;
 import cross_cutting.EnumTypes.Actions;
 import cross_cutting.EnumTypes.Extensions;
-import cross_cutting.HelpfulThings.FilePath;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,10 +33,6 @@ public class StageController {
     //------------------------------------------------------------------------------------------------------------------
     @FXML
     Button closeButton;
-    @FXML
-    TextField textField;
-    @FXML
-    Label label;
 
     public void Switch(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(scenes.getAllPath().get(scenes.getCounter())));
@@ -66,7 +61,7 @@ public class StageController {
         System.out.println(scenes.getCounter());
         this.stage.setScene(scene);
 
-        if(scenes.getCounter() == 3) {
+        if(scenes.getCounter() == scenes.getAllPath().size() - 2) {
             tempStage = stage;
         }
 
@@ -86,13 +81,6 @@ public class StageController {
 
         scenes.setCounter(0);
     }
-
-//    public void NewPath(ActionEvent event) throws IOException {
-//        String path = textField.getText();
-//        label.setText("Path : " + path);
-//        data.setPath(path);
-//        System.out.println(data.getPath());
-//    }
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -129,32 +117,57 @@ public class StageController {
     //------------------------------------------------------------------------------------------------------------------
 
     @FXML
-    private RadioButton button_0, button_1, button_2, button_3, button_4, button_5;
+    private RadioButton button_0, button_1, button_2;
 
     public void ChangeExtensions(ActionEvent event) {
         if(button_0.isSelected()) {
             System.out.println("zip");
-            data.setInExtensions(Extensions.ZIP);
+            data.setArchiveExtension(Extensions.ZIP);
         }
         else if(button_1.isSelected()) {
             System.out.println("rar");
-            data.setInExtensions(Extensions.RAR);
+            data.setArchiveExtension(Extensions.RAR);
         }
         else if(button_2.isSelected()) {
             System.out.println("jar");
-            data.setInExtensions(Extensions.JAR);
+            data.setArchiveExtension(Extensions.JAR);
         }
-        else if(button_3.isSelected()) {
-            System.out.println("json");
-            data.setInExtensions(Extensions.JSON);
-        }
-        else if(button_4.isSelected()) {
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @FXML
+    private RadioButton buttonIn_0, buttonIn_1, buttonIn_2;
+    @FXML
+    private RadioButton buttonOut_0, buttonOut_1, buttonOut_2;
+
+    public void ChangeInOutExtensions(ActionEvent event) {
+
+        if (buttonIn_0.isSelected()){
             System.out.println("xml");
             data.setInExtensions(Extensions.XML);
         }
-        else if(button_5.isSelected()) {
+        else if (buttonIn_1.isSelected()) {
+            System.out.println("json");
+            data.setInExtensions(Extensions.JSON);
+        }
+        else if (buttonIn_2.isSelected()) {
             System.out.println("txt");
             data.setInExtensions(Extensions.TXT);
+        }
+
+        if (buttonOut_0.isSelected()){
+            System.out.println("xml");
+            data.setOutExtension(Extensions.XML);
+        }
+        else if (buttonOut_1.isSelected()) {
+            System.out.println("json");
+            data.setOutExtension(Extensions.JSON);
+        }
+        else if (buttonOut_2.isSelected()) {
+            System.out.println("txt");
+            data.setOutExtension(Extensions.TXT);
         }
 
     }
@@ -205,8 +218,13 @@ public class StageController {
     }
 
     public void EndYes(ActionEvent event) throws Exception {
+
         try {
-            CreateActionForFile createActionForFile = new CreateActionForFile(data.getPath(), data.getInExtensions(), data.getOutExtension(), data.getActions(), null);
+            CreateActionForFile createActionForFile = new CreateActionForFile(data.getPath(),
+                                                                              data.getInExtensions(),
+                                                                              data.getOutExtension(),
+                                                                              data.getActions(),
+                                                                              data.getArchiveExtension());
             createActionForFile.CreateAction();
             createActionForFile.start();
 
@@ -234,9 +252,9 @@ public class StageController {
     //------------------------------------------------------------------------------------------------------------------
 
     @FXML
-    Button inputButton, outputButton;
+    Button inputButton;
     @FXML
-    TextField inputField, outputField;
+    TextField inputField;
 
     private FileChannel desktop;
 

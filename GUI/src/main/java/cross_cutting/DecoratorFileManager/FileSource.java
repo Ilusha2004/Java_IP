@@ -17,10 +17,10 @@ public class FileSource implements DecoratorFileInterface {
     private static Extensions archiveExtensions;
 
     public FileSource(String path, Extensions inExtension, Extensions outExtension, Actions actions, Extensions archiveExtensions) {
-        this.path = new FilePath(path);
-        this.inExtension = inExtension;
-        this.outExtension = outExtension;
-        this.actions = actions;
+        this.path              = new FilePath(path);
+        this.inExtension       = inExtension;
+        this.outExtension      = outExtension;
+        this.actions           = actions;
         this.archiveExtensions = archiveExtensions;
     }
 
@@ -50,6 +50,14 @@ public class FileSource implements DecoratorFileInterface {
 
     public static Actions getActions() {
         return actions;
+    }
+
+    public static Extensions getArchiveExtensions() {
+        return archiveExtensions;
+    }
+
+    public static void setArchiveExtensions(Extensions archiveExtensions) {
+        FileSource.archiveExtensions = archiveExtensions;
     }
 
     @Override

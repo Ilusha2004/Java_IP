@@ -24,11 +24,11 @@ public class FileArchivator extends DataDecorator {
 
         System.out.println(FileSource.getFilePath().getPath());
 
-        if (FileSource.getInExtension().equals(Extensions.ZIP)) {
+        if (FileSource.getArchiveExtensions().equals(Extensions.ZIP)) {
             ZipArchiving();
-        } else if (FileSource.getInExtension().equals(Extensions.JAR)) {
+        } else if (FileSource.getArchiveExtensions().equals(Extensions.JAR)) {
             JarArchiving();
-        } else if (FileSource.getInExtension().equals(Extensions.RAR)) {
+        } else if (FileSource.getArchiveExtensions().equals(Extensions.RAR)) {
             RarArchiving();
         }
 

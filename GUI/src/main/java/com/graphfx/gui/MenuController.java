@@ -17,6 +17,7 @@ public class MenuController {
     Button but;
 
     public void CreateScene(String FXMLPath) {
+
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(FXMLPath));
@@ -26,6 +27,7 @@ public class MenuController {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+
     }
 
     public void About(ActionEvent event) {

@@ -44,16 +44,22 @@ public class CreateActionForFile {
         tempFile = new File(path);
 
         if (actions.equals(Actions.ARCHIVE)) {
-            dec = new FileArchivator(new FileSource(path, inExtension, outExtension, actions, archiveExtension));
+            dec = new FileArchivator(
+                  new FileSource(path, inExtension, outExtension, actions, archiveExtension));
         }
         else if (actions.equals(Actions.ENCRYPT)) {
-            dec = new FileEncrypt(new FileSource(path, inExtension, outExtension, actions, archiveExtension));
+            dec = new FileEncrypt(
+                  new FileSource(path, inExtension, outExtension, actions, archiveExtension));
         }
         else if (actions.equals(Actions.ARCHIVE_AND_ENCRYPT)) {
-            dec = new FileArchivator(new FileEncrypt(new FileSource(path, inExtension, outExtension, actions, archiveExtension)));
+            dec = new FileArchivator(
+                  new FileEncrypt(
+                  new FileSource(path, inExtension, outExtension, actions, archiveExtension)));
         }
         else if (actions.equals(Actions.ENCRYPT_AND_ARCHIVE)) {
-            dec = new FileEncrypt(new FileArchivator(new FileSource(path, inExtension, outExtension, actions, archiveExtension)));
+            dec = new FileEncrypt(
+                  new FileArchivator(
+                  new FileSource(path, inExtension, outExtension, actions, archiveExtension)));
         }
 
     }
