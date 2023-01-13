@@ -22,42 +22,43 @@ public class Archive {
 
     public void ZipArchivation() {
 
-        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("resourses/archiveAndEncr/" + name + ".zip"));
-             FileInputStream fis = new FileInputStream("resourses/" + path);) {
+        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("src/res/archiveAndEncrypt" + name + ".zip"));
+              FileInputStream fis = new FileInputStream("src/res/" + path);) {
 
-            ZipEntry entry1 = new ZipEntry("text.txt");
+            ZipEntry entry1 = new ZipEntry(path);
             zout.putNextEntry(entry1);
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
             zout.write(buffer);
             zout.closeEntry();
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
 
     public void RarArchiving() {
 
-        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("resourses/archiveAndEncr/" + name + ".rar"));
-             FileInputStream fis = new FileInputStream("resourses/" + path);) {
+        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("src/res/archiveAndEncrypt" + name + ".rar"));
+              FileInputStream fis = new FileInputStream("src/res/" + path);) {
 
-            ZipEntry entry1 = new ZipEntry("text.txt");
+            ZipEntry entry1 = new ZipEntry(path);
             zout.putNextEntry(entry1);
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
             zout.write(buffer);
             zout.closeEntry();
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
 
     public void JarArchiving() {
 
-        try (JarOutputStream jarOutputStream = new JarOutputStream(new FileOutputStream("resourses/archiveAndEncr/" + name + ".jar"));
-             FileInputStream fis = new FileInputStream("resourses/" + path);) {
+        try (JarOutputStream jarOutputStream = new JarOutputStream(new FileOutputStream("src/res/archiveAndEncrypt/" + name + ".jar"));
+                         FileInputStream fis = new FileInputStream("src/res/" + path);) {
+
             JarEntry jarEntry = new JarEntry(path);
             jarOutputStream.putNextEntry(jarEntry);
             byte[] buffer = new byte[fis.available()];
@@ -66,9 +67,14 @@ public class Archive {
             jarOutputStream.closeEntry();
 
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void main(String[] args) {
+        Archive archive = new Archive("src/res/orderout.txt");
+        archive.ZipArchivation();
     }
 
 }

@@ -1,5 +1,8 @@
 package cross_cutting.HelpfulThings;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 public class FilePath {
 
     private static String name;
@@ -10,12 +13,19 @@ public class FilePath {
 
     public FilePath(String path) {
 
-        String[] arr = path.split("/");
-        String[] temp = arr[arr.length - 1].replace(".", " ").split(" ");
+        StringTokenizer tokenizer = new StringTokenizer(path, "/\\");
+        ArrayList<String> temp = new ArrayList<>();
+
+        while (tokenizer.hasMoreTokens()) {
+            temp.add(tokenizer.nextToken());
+        }
+
+        String[] NameAndExtension = temp.get(temp.size() - 1).replace(".", " ").split(" ");
 
         this.path = path;
-        this.name = temp[temp.length - 2];
-        this.extension = temp[temp.length - 1];
+        this.name = NameAndExtension[0];
+        this.extension = NameAndExtension[1];
+        this.firstExtension = this.extension;
 
     }
 
@@ -58,4 +68,5 @@ public class FilePath {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
 }

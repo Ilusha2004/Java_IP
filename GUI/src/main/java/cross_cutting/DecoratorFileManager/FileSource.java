@@ -14,20 +14,22 @@ public class FileSource implements DecoratorFileInterface {
     private static Extensions inExtension;
     private static Extensions outExtension;
     private static Actions actions;
+    private static Extensions archiveExtensions;
 
-    public FileSource(String path, Extensions inExtension, Extensions outExtension, Actions actions) {
+    public FileSource(String path, Extensions inExtension, Extensions outExtension, Actions actions, Extensions archiveExtensions) {
         this.path = new FilePath(path);
         this.inExtension = inExtension;
         this.outExtension = outExtension;
         this.actions = actions;
+        this.archiveExtensions = archiveExtensions;
     }
 
-    public static void setname(String name) {
-        FileSource.path.setFirstName(name);
+    public static void setName(String name) {
+        FileSource.path.setName(name);
     }
 
-    public static void setextension(String extension) {
-        FileSource.path.setFirstExtension(extension);
+    public static void setExtension(String extension) {
+        FileSource.path.setExtension(extension);
     }
 
     public static FilePath getFilePath() {

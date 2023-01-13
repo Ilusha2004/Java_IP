@@ -1,5 +1,8 @@
 package cross_cutting.Archive;
 
+import cross_cutting.DecoratorFileManager.FileSource;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.jar.JarEntry;
@@ -20,9 +23,9 @@ public class DeArchive {
         this.path = path;
     }
 
-    public void ZipArchivation() {
+    public void RarDeArchivation() {
 
-        try (ZipInputStream zout = new ZipInputStream(new FileInputStream(this.name + ".zip"));
+        try (ZipInputStream zout = new ZipInputStream(new FileInputStream(this.name + ".rar"));
              FileOutputStream fout = new FileOutputStream("src/res/" + path);) {
 
             for (int c = zout.read(); c != -1; c = zout.read()) {
@@ -30,29 +33,25 @@ public class DeArchive {
             }
             fout.flush();
             zout.closeEntry();
-            fout.close();
 
-        } catch (Exception e) {
-            e.getStackTrace();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
 
     }
 
     public void ZipDeArchiving() {
 
-        try (ZipInputStream zin = new ZipInputStream(new FileInputStream(this.name + ".zip"))) {
+        try (ZipInputStream zin = new ZipInputStream(new FileInputStream(path))) {
 
             ZipEntry entry;
             String Name;
-            long size;
 
             while ((entry = zin.getNextEntry()) != null) {
 
-                Name = entry.getName(); // получим название файла
-                size = entry.getSize();  // получим его размер в байтах
-                System.out.printf("File name: %s \t File size: %d \n", Name, size);
+                Name = entry.getName();
 
-                FileOutputStream fout = new FileOutputStream("src/res/" + Name);
+                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/" + Name);
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -68,7 +67,7 @@ public class DeArchive {
     }
 
 
-    public void JarArchiving() {
+    public void JarDeArchiving() {
 
         try (JarOutputStream jarOutputStream = new JarOutputStream(new FileOutputStream(this.name + ".jar"));
              FileInputStream fis = new FileInputStream("resourses/" + path);) {
@@ -79,10 +78,15 @@ public class DeArchive {
             jarOutputStream.write(buffer);
             jarOutputStream.closeEntry();
 
-        } catch (Exception e) {
-            e.getStackTrace();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
 
+    }
+
+    public static void main(String[] args) {
+        DeArchive deArchive = new DeArchive("src/res/archiveAndEncrypt/archived_res.zip");
+        deArchive.ZipDeArchiving();
     }
 
 
