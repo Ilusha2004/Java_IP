@@ -70,6 +70,8 @@ public class ParserJson {
 
     }
 
+
+
     public static ArrayList<String> getRawAriphStrings() {
         return rawAriphStrings;
     }

@@ -9,6 +9,7 @@ public class DataForFile {
     private Extensions inExtensions;
     private Extensions outExtension;
     private Actions actions;
+    private Extensions archiveExtension;
 
     public String getPath() {
         return path;
@@ -40,5 +41,13 @@ public class DataForFile {
 
     public void setActions(Actions actions) {
         this.actions = actions;
+    }
+
+    public Extensions getArchiveExtension() {
+        return archiveExtension;
+    }
+
+    public void setArchiveExtension(Extensions archiveExtension) {
+        this.archiveExtension = archiveExtension;
     }
 }

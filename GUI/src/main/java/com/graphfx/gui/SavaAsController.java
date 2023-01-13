@@ -21,7 +21,6 @@ public class SavaAsController implements Initializable {
 
     List<String> extensions = Arrays.asList("zip", "jar", "rar");
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         box.getItems().addAll(extensions);

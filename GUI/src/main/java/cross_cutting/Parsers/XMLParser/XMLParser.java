@@ -60,9 +60,11 @@ public class XMLParser {
             document.appendChild(element);
 
             try {
+
                 for (var id : rezuList) {
                     element.appendChild(getResult(document, id.toString()));
                 }
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
