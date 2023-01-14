@@ -1,29 +1,23 @@
 package cross_cutting.Parsers.TXTParser;
 
 import cross_cutting.Arifmetic.AriphmeticParser;
+import cross_cutting.BuilderAriphmeticParser.Parser;
 
 import javax.annotation.processing.FilerException;
 import java.io.*;
 import java.util.ArrayList;
 
-public class TxtParser {
+public class TxtParser extends Parser {
 
-    private String path;
-    private String outPath;
+    private static ArrayList<Double> rezuList = new ArrayList<>();
 
-    private static ArrayList<Integer> rezuList = new ArrayList<>();
-
-    public TxtParser(String path, String outPath) {
-        this.path = path;
-        this.outPath = outPath;
+    public TxtParser(String inPath, String outPath) {
+        super(inPath, outPath);
     }
 
-    public TxtParser(String path) {
-        this.path = path;
-    }
-
-    public void ReadFile() {
-        try (BufferedReader buffer = new BufferedReader(new FileReader(path))) {
+    @Override
+    public void parse() {
+        try (BufferedReader buffer = new BufferedReader(new FileReader(getInPath()))) {
 
             while (buffer.ready()) {
                 String temp = buffer.readLine().toString();
@@ -32,21 +26,20 @@ public class TxtParser {
             }
 
         } catch (Exception e) {
-            e.getStackTrace();
+            System.out.println(e.getMessage());
         }
-
     }
 
-    public void WriteFile() throws IOException {
-        try (BufferedWriter buffer = new BufferedWriter(new FileWriter(outPath));) {
+    @Override
+    public void write() throws IOException {
+        try (BufferedWriter buffer = new BufferedWriter(new FileWriter(getOutPath()));) {
 
             for (var id : rezuList) {
                 buffer.write(id.toString() + "\n");
             }
 
         } catch (FilerException e) {
-            System.out.println("Error");
-            e.getStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

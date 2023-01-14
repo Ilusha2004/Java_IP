@@ -1,6 +1,7 @@
 package cross_cutting.Parsers.JsonParser;
 
 import cross_cutting.Arifmetic.AriphmeticParser;
+import cross_cutting.BuilderAriphmeticParser.Parser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,15 +14,20 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class ParserJson {
+public class ParserJson extends Parser {
 
     private static ArrayList<String> rawAriphStrings = new ArrayList<String>();
-    private static ArrayList<Integer> rezuList = new ArrayList<>();
+    private static ArrayList<Double> rezuList = new ArrayList<>();
 
-    public void Parse(String reader) throws RuntimeException {
+    public ParserJson(String inPath, String outPath) {
+        super(inPath, outPath);
+    }
+
+    @Override
+    public void parse() {
 
         try {
-            FileReader read = new FileReader(reader);
+            FileReader read = new FileReader(getInPath());
             JSONParser Parser = new JSONParser();
             JSONObject object = null;
 
@@ -31,7 +37,7 @@ public class ParserJson {
                 throw new RuntimeException(e);
             }
 
-            JSONArray array = (JSONArray) object.get("arifmetic");
+            JSONArray array = (JSONArray) object.get("arithmetic");
 
             var iterator = array.iterator();
 
@@ -43,16 +49,17 @@ public class ParserJson {
             }
 
         } catch (FileNotFoundException exp) {
-            exp.printStackTrace();
+            System.out.println(exp.getMessage());
         } catch (IOException exp) {
-            exp.printStackTrace();
+            System.out.println(exp.getMessage());
         } catch (NullPointerException exp) {
-            exp.printStackTrace();
+            System.out.println(exp.getMessage());
         }
 
     }
 
-    public void WriteJsonFile(String reader) throws IOException {
+    @Override
+    public void write() throws IOException {
 
         JSONObject object_0 = new JSONObject();
         JSONObject object_1;
@@ -66,18 +73,8 @@ public class ParserJson {
         }
 
         object_0.put("Results", array);
-        Files.write(Paths.get(reader), object_0.toJSONString().getBytes());
+        Files.write(Paths.get(getOutPath()), object_0.toJSONString().getBytes());
 
-    }
-
-
-
-    public static ArrayList<String> getRawAriphStrings() {
-        return rawAriphStrings;
-    }
-
-    public static ArrayList<Integer> getRezuList() {
-        return rezuList;
     }
 
 }

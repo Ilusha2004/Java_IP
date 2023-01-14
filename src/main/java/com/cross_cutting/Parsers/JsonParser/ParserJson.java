@@ -38,8 +38,12 @@ public class ParserJson {
             while (iterator.hasNext()) {
                 JSONObject temp = (JSONObject) iterator.next();
                 String result = temp.get("RawString").toString();
-                AriphmeticParser tAriphmeticParser = new AriphmeticParser(result);
-                rezuList.add(tAriphmeticParser.getResult());
+                try {
+                    AriphmeticParser tAriphmeticParser = new AriphmeticParser(result);
+                    rezuList.add(tAriphmeticParser.getResult());
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
 
         } catch (FileNotFoundException exp) {

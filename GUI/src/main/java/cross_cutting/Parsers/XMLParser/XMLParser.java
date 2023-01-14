@@ -1,6 +1,7 @@
 package cross_cutting.Parsers.XMLParser;
 
 import cross_cutting.Arifmetic.AriphmeticParser;
+import cross_cutting.BuilderAriphmeticParser.Parser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,36 +19,25 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class XMLParser {
+public class XMLParser extends Parser {
 
     private static ArrayList<String> rawAriphStrings = new ArrayList<>();
-    private static ArrayList<Integer> rezuList = new ArrayList<>();
+    private static ArrayList<Double> rezuList = new ArrayList<>();
 
-    public void Parse(String filePath) throws ParserConfigurationException, SAXException, IOException {
+    public XMLParser(String inPath, String outPath) {
+        super(inPath, outPath);
+    }
 
+    @Override
+    public void parse() throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         HEXParse par = new HEXParse();
-        parser.parse(new File(filePath), par);
-
+        parser.parse(new File(getInPath()), par);
     }
 
-    private static class HEXParse extends DefaultHandler {
-
-        @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-            if (qName.equals("RawString")) {
-                String str = attributes.getValue("str");
-                AriphmeticParser tAriphmeticParser = new AriphmeticParser(str);
-                rezuList.add(tAriphmeticParser.getResult());
-                rawAriphStrings.add(str);
-            }
-        }
-
-    }
-
-    public void WriteXMLFile(String filePath) {
-
+    @Override
+    public void write() throws IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
 
@@ -75,12 +65,25 @@ public class XMLParser {
             transform.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(document);
 
-            StreamResult result = new StreamResult(new File(filePath));
+            StreamResult result = new StreamResult(new File(getOutPath()));
 
             transform.transform(source, result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private static class HEXParse extends DefaultHandler {
+
+        @Override
+        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+            if (qName.equals("RawString")) {
+                String str = attributes.getValue("str");
+                AriphmeticParser tAriphmeticParser = new AriphmeticParser(str);
+                rezuList.add(tAriphmeticParser.getResult());
+                rawAriphStrings.add(str);
+            }
         }
 
     }
