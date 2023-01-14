@@ -2,7 +2,7 @@ package cross_cutting.BuilderAriphmeticParser;
 
 import cross_cutting.EnumTypes.Extensions;
 
-public class JsonParserBuilder implements BuilderParserManager{
+public class XMLParserBuilder implements BuilderParserManager{
     private Parser parser;
     private String inPath;
     private String outPath;
