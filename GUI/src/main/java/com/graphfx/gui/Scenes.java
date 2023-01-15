@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Scenes {
     private List<String> allPath = Arrays.asList("MainTitle.fxml",
-                                                 "SetInOut.fxml",
                                                  "SceneTwo.fxml",
                                                  "SceneThree.fxml",
                                                  "SceneOptions.fxml",

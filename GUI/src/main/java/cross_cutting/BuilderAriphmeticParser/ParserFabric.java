@@ -9,8 +9,6 @@ import cross_cutting.Parsers.TXTParser.WriteTxt;
 import cross_cutting.Parsers.XMLParser.WriteXml;
 import cross_cutting.Parsers.XMLParser.XMLParser;
 
-import java.io.File;
-
 public class ParserFabric {
 
     private String inPath;

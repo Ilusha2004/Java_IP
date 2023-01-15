@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -12,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
    <children>
-      <Button layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#MainThemeController" prefHeight="35.0" prefWidth="54.0" text="next" />
+      <Button layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#IncreaseSceneAfter" prefHeight="35.0" prefWidth="54.0" text="next" />
       <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" text="cancel" />
       <Button layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" text="prev" textOverrun="CLIP" />
       <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0">
@@ -60,6 +62,18 @@
       <Text layoutX="187.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input file path" wrappingWidth="226.33203125">
          <font>
             <Font size="36.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="writeButtonXMl" layoutX="100.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".xml">
+         <toggleGroup>
+            <ToggleGroup fx:id="extensionForWrite" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="writeButtonJSON" layoutX="244.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".json" toggleGroup="$extensionForWrite" />
+      <RadioButton fx:id="writeButtonTXT" layoutX="392.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".txt" toggleGroup="$extensionForWrite" />
+      <Text layoutX="200.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write parse file in" wrappingWidth="198.73046875">
+         <font>
+            <Font size="20.0" />
          </font>
       </Text>
    </children>

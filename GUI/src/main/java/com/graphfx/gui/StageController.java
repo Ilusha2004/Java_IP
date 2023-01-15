@@ -1,8 +1,12 @@
 package com.graphfx.gui;
 
-import cross_cutting.DecoratorFileManager.CreateActionForFile;
+import cross_cutting.BuilderAriphmeticParser.ParserAndWriterBuilder;
+import cross_cutting.BuilderAriphmeticParser.ParserFabric;
+import cross_cutting.DecoratorFileManager.*;
 import cross_cutting.EnumTypes.Actions;
 import cross_cutting.EnumTypes.Extensions;
+import cross_cutting.Parsers.Parser;
+import cross_cutting.Parsers.Writer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +17,13 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +36,15 @@ public class StageController {
     private Parent root;
     private static Scenes scenes = new Scenes();
     private static Stage tempStage;
+    private static String extension;
+
+    public static String getExtension() {
+        return extension;
+    }
+
+    public DataForFile getData() {
+        return data;
+    }
 
     //------------------------------------------------------------------------------------------------------------------
     @FXML
@@ -42,7 +58,6 @@ public class StageController {
         System.out.println(scenes.getCounter());
         this.stage.setScene(scene);
         this.stage.show();
-
     }
 
     public void MainThemeController(ActionEvent event) throws IOException {
@@ -111,6 +126,9 @@ public class StageController {
             data.setActions(Actions.ARCHIVE);
             System.out.println("compress");
         }
+        else {
+            System.out.println("Actions are not detected");
+        }
 
     }
 
@@ -173,7 +191,6 @@ public class StageController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //WTF Section
 
     @FXML
     Label label_2;
@@ -201,6 +218,7 @@ public class StageController {
             newStage.setTitle("Warning");
             newStage.setScene(new Scene(root));
             newStage.showAndWait();
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -219,17 +237,22 @@ public class StageController {
 
     public void EndYes(ActionEvent event) throws Exception {
 
-        try {
-            CreateActionForFile createActionForFile = new CreateActionForFile(data.getPath(),
-                                                                              data.getInExtensions(),
-                                                                              data.getOutExtension(),
-                                                                              data.getActions(),
-                                                                              data.getArchiveExtension());
-            createActionForFile.CreateAction();
-            createActionForFile.start();
+        if (data.getActions() != null) {
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            try {
+                CreateActionForFile createActionForFile = new CreateActionForFile(data.getPath(),
+                        data.getInExtensions(),
+                        data.getOutExtension(),
+                        data.getActions(),
+                        data.getArchiveExtension());
+
+                createActionForFile.CreateAction();
+                createActionForFile.start();
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+
         }
 
         System.out.println(data.getOutExtension() + " "
@@ -255,19 +278,22 @@ public class StageController {
     Button inputButton;
     @FXML
     TextField inputField;
+    @FXML
+    RadioButton writeButtonXMl, writeButtonTXT, writeButtonJSON;
 
     private FileChannel desktop;
 
     public void selectInputFile(ActionEvent actionEvent) {
         Stage primaryStage = new Stage();
         final FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:/Users/speed/OneDrive/Рабочий стол/CC/src/res"));
+        fileChooser.setInitialDirectory(new File("./src/res"));
 
         inputButton.setOnAction(event -> {
             inputField.clear();
             File file = fileChooser.showOpenDialog(primaryStage);
             if (file != null) {
                 openFile(file);
+
                 List<File> files = Arrays.asList(file);
                 printLog(inputField, files);
                 data.setPath(inputField.getText());
@@ -278,6 +304,27 @@ public class StageController {
         System.out.println(data.getPath());
 
     }
+
+    public void WriteExtensionParser(ActionEvent event) {
+
+        if(writeButtonJSON.isSelected()){
+            System.out.println("Json");
+            extension = "json";
+            data.setOutExtension(Extensions.JSON);
+        }
+        else if(writeButtonTXT.isSelected()){
+            System.out.println("txt");
+            extension = "txt";
+            data.setOutExtension(Extensions.TXT);
+        }
+        else if(writeButtonXMl.isSelected()){
+            System.out.println("xml");
+            extension = "xml";
+            data.setOutExtension(Extensions.XML);
+        }
+
+    }
+
     private void printLog(TextField textArea, List<File> files) {
         if (files == null || files.isEmpty()) {
             return;
@@ -295,7 +342,27 @@ public class StageController {
         }
     }
 
-    //------------------------------------------------------------------------------------------------------------------
+    public void IncreaseSceneAfter(ActionEvent event) throws IOException, ParserConfigurationException, SAXException {
+        scenes.Increase();
 
+        ParserFabric fabric = new ParserFabric(data.getPath(), "src/res/new." + extension);
+
+        File file = new File("src/res/new." + extension);
+        data.setPath("src/res/new." + extension);
+        file.createNewFile();
+
+        ParserAndWriterBuilder builder = new ParserAndWriterBuilder();
+
+        fabric.Create(builder);
+        Parser parser = builder.getParser();
+        Writer writer = builder.getWriter();
+
+        parser.parse();
+        writer.write();
+
+        Switch(event);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
 
 }
