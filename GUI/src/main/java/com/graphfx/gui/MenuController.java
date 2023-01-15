@@ -7,14 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class MenuController {
-
-    @FXML
-    Button but;
 
     public void CreateScene(String FXMLPath) {
 
@@ -24,6 +29,7 @@ public class MenuController {
             stage.setTitle("Java");
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -34,6 +40,60 @@ public class MenuController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "This is application was made by KoVLya");
         alert.showAndWait();
         CreateScene("About.fxml");
+    }
+
+    private FileChannel desktop;
+    @FXML
+    MenuItem saveAsItem;
+    public void SaveAS(ActionEvent event) {
+
+        Stage primaryStage = new Stage();
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("./src/res"));
+
+        saveAsItem.setOnAction(event1 -> {
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(StageController.getExtension().toUpperCase() +
+                    " files (*." + StageController.getExtension() + ")", "*." + StageController.getExtension());
+
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showSaveDialog(primaryStage);
+            if (file != null) {
+                openFile(file);
+                List<File> files = Arrays.asList(file);
+                String temp = new String();
+
+                for(var id : files) {
+                    System.out.println(id);
+                }
+
+                File newFile = new File(files.get(0).getName());
+
+                try {
+                    newFile.createNewFile();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
+
+    }
+
+    private void printLog(TextField textArea, List<File> files) {
+        if (files == null || files.isEmpty()) {
+            return;
+        }
+        for (File file : files) {
+            textArea.appendText(file.getAbsolutePath() + "\n");
+        }
+    }
+
+    private void openFile(File file) {
+        try {
+            this.desktop.open(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void NewFile(ActionEvent event) {

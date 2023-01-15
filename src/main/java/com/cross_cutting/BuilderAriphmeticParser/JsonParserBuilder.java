@@ -1,8 +1,6 @@
-package cross_cutting.BuilderAriphmeticParser;
+package com.cross_cutting.BuilderAriphmeticParser;
 
-import cross_cutting.EnumTypes.Extensions;
-
-public class XMLParserBuilder implements BuilderParserManager{
+public class JsonParserBuilder implements BuilderParserManager {
     private Parser parser;
     private String inPath;
     private String outPath;
