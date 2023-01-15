@@ -1,7 +1,8 @@
 package cross_cutting.Parsers.JsonParser;
 
 import cross_cutting.Arifmetic.AriphmeticParser;
-import cross_cutting.BuilderAriphmeticParser.Parser;
+import cross_cutting.Parsers.Parser;
+import cross_cutting.Parsers.SingletonResulList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,12 +16,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class ParserJson extends Parser {
+    private ArrayList<Double> rezuList = new ArrayList<>();
 
-    private static ArrayList<String> rawAriphStrings = new ArrayList<String>();
-    private static ArrayList<Double> rezuList = new ArrayList<>();
-
-    public ParserJson(String inPath, String outPath) {
-        super(inPath, outPath);
+    public ParserJson(String inPath) {
+        super(inPath);
     }
 
     @Override
@@ -48,6 +47,8 @@ public class ParserJson extends Parser {
                 rezuList.add(tAriphmeticParser.getResult());
             }
 
+            SingletonResulList.getInstance(rezuList);
+
         } catch (FileNotFoundException exp) {
             System.out.println(exp.getMessage());
         } catch (IOException exp) {
@@ -55,25 +56,6 @@ public class ParserJson extends Parser {
         } catch (NullPointerException exp) {
             System.out.println(exp.getMessage());
         }
-
-    }
-
-    @Override
-    public void write() throws IOException {
-
-        JSONObject object_0 = new JSONObject();
-        JSONObject object_1;
-
-        JSONArray array = new JSONArray();
-
-        for (var id : rezuList) {
-            object_1 = new JSONObject();
-            object_1.put("Result ", id);
-            array.add(object_1);
-        }
-
-        object_0.put("Results", array);
-        Files.write(Paths.get(getOutPath()), object_0.toJSONString().getBytes());
 
     }
 

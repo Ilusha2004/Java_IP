@@ -1,5 +1,7 @@
 package cross_cutting.HelpfulThings;
 
+import cross_cutting.EnumTypes.Extensions;
+
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -10,6 +12,7 @@ public class FilePath {
     private static String extension;
     private static String firstExtension;
     private static String firstName;
+    private static Extensions fileExtension;
 
     public FilePath(String path) {
 
@@ -26,6 +29,19 @@ public class FilePath {
         this.name = NameAndExtension[0];
         this.extension = NameAndExtension[1];
         this.firstExtension = this.extension;
+
+
+        if(extension.equals("txt")){
+            this.fileExtension = Extensions.TXT;
+        }
+        else if(extension.equals("json")) {
+            this.fileExtension = Extensions.JSON;
+        }
+        else if(extension.equals("xml")) {
+            this.fileExtension = Extensions.XML;
+        }
+
+        System.out.println(fileExtension);
 
     }
 
@@ -69,4 +85,7 @@ public class FilePath {
         this.firstName = firstName;
     }
 
+    public Extensions getFileExtension() {
+        return fileExtension;
+    }
 }

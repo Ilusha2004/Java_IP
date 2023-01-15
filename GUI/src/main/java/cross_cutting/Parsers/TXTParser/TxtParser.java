@@ -1,7 +1,8 @@
 package cross_cutting.Parsers.TXTParser;
 
 import cross_cutting.Arifmetic.AriphmeticParser;
-import cross_cutting.BuilderAriphmeticParser.Parser;
+import cross_cutting.Parsers.Parser;
+import cross_cutting.Parsers.SingletonResulList;
 
 import javax.annotation.processing.FilerException;
 import java.io.*;
@@ -9,10 +10,10 @@ import java.util.ArrayList;
 
 public class TxtParser extends Parser {
 
-    private static ArrayList<Double> rezuList = new ArrayList<>();
+    private ArrayList<Double> rezuList = new ArrayList<>();
 
-    public TxtParser(String inPath, String outPath) {
-        super(inPath, outPath);
+    public TxtParser(String inPath) {
+        super(inPath);
     }
 
     @Override
@@ -25,20 +26,9 @@ public class TxtParser extends Parser {
                 rezuList.add(parser.getResult());
             }
 
+            SingletonResulList.getInstance(rezuList);
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void write() throws IOException {
-        try (BufferedWriter buffer = new BufferedWriter(new FileWriter(getOutPath()));) {
-
-            for (var id : rezuList) {
-                buffer.write(id.toString() + "\n");
-            }
-
-        } catch (FilerException e) {
             System.out.println(e.getMessage());
         }
     }
