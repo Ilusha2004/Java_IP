@@ -33,11 +33,11 @@ public class FileArchivator extends DataDecorator {
         }
 
         File file = new File(FileSource.getFilePath().getPath());
-        file.delete();
 
         FileSource.setName("archived_" + FileSource.getFilePath().getName());
         System.out.println(FileSource.getFilePath().getPath());
         FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension()));
+        System.out.println("src/res/archiveAndEncrypt/" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension());
         System.out.println("Archive part");
         super.writeData();
     }

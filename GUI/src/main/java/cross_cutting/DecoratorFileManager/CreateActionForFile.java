@@ -3,12 +3,9 @@ package cross_cutting.DecoratorFileManager;
 
 import cross_cutting.EnumTypes.Actions;
 import cross_cutting.EnumTypes.Extensions;
-import cross_cutting.HelpfulThings.FilePath;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.security.cert.Extension;
 
 public class CreateActionForFile {
     private final String path;
@@ -18,6 +15,8 @@ public class CreateActionForFile {
     private final Extensions archiveExtension;
     private DataDecorator dec;
     private File tempFile;
+
+    private String newPath;
 
     public CreateActionForFile(String path, Extensions inExtension, Extensions outExtension, Actions actions, Extensions archiveExtension) {
         this.path = path;
@@ -37,6 +36,18 @@ public class CreateActionForFile {
 
     public Extensions getOutExtension() {
         return outExtension;
+    }
+
+    public String getNewPath() {
+        return newPath;
+    }
+
+    public void setNewPath(String newPath) {
+        this.newPath = newPath;
+    }
+
+    public File getTempFile() {
+        return tempFile;
     }
 
     public void CreateAction() throws IOException {
