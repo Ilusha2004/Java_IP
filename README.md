@@ -43,3 +43,23 @@
 5) Есть ли сервисы и если да, то какие: Rest, SOAP, Оба.
 
 ![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015210.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015046.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015103.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015155.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015210.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015221.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015237.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015248.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015302.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015315.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015329.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015329.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015339.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015355.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015421.png)
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015516.png)
+
+
+
+
+
