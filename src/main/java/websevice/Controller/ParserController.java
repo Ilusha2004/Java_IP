@@ -2,6 +2,7 @@ package websevice.Controller;
 
 import com.cross_cutting.BuilderAriphmeticParser.ParserAndWriterBuilder;
 import com.cross_cutting.BuilderAriphmeticParser.ParserFabric;
+import com.cross_cutting.HelpfulThings.FilePath;
 import com.cross_cutting.Parsers.Parser;
 import com.cross_cutting.Parsers.Writer;
 import org.springframework.http.HttpStatus;
@@ -14,11 +15,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @RestController
 @RequestMapping("/")
 public class ParserController {
+
+    public static FilePath filePath;
 
     @GetMapping("/parse")
     public ResponseEntity Create() {
@@ -30,19 +34,43 @@ public class ParserController {
         return FileController.getFiles();
     }
 
+    static String tempPath;
+    private static String extension;
 
     @GetMapping("/parse/parsing")
-    public void Parsing(@RequestParam(required = true, defaultValue = "path") String path) throws ParserConfigurationException, IOException, SAXException {
-        ParserFabric fabric = new ParserFabric(path, null);
+    public ResponseEntity<File> Parsing(@RequestParam(required = true, defaultValue = "path") String path,
+                                        @RequestParam(required = true, defaultValue = "extension") String extension)
+            throws ParserConfigurationException, IOException, SAXException {
+
+        FilePath filePath = new FilePath(path);
+
+        tempPath = "src/res/out " + filePath.getName() + "." + extension;
+        this.extension = extension;
+        filePath.setPath(tempPath);
+
+        ParserFabric fabric = new ParserFabric(path, "src/res/out " + filePath.getName() + "." + extension);
 
         ParserAndWriterBuilder builder = new ParserAndWriterBuilder();
 
         fabric.Create(builder);
+
         Parser parser = builder.getParser();
         Writer writer = builder.getWriter();
 
         parser.parse();
         writer.write();
+
+        File file = new File("src/res/out " + filePath.getName() + "." + extension);
+
+        return new ResponseEntity<File>(file, HttpStatus.OK);
+    }
+
+    @GetMapping("/parse/writting")
+    public ResponseEntity<File> Writing(@RequestParam(required = true, defaultValue = "path") String path) throws IOException {
+        File outFile = new File(path);
+        File inFile = new File(tempPath);
+        Files.copy(inFile.toPath(), outFile.toPath());
+        return new ResponseEntity<File>(outFile, HttpStatus.OK);
     }
 
     @PostMapping(value = "/parse", consumes = "application/json", produces = "application/json")
@@ -55,21 +83,22 @@ public class ParserController {
     }
 
     @GetMapping("/parse/write")
-    public String SaveNewFile(@RequestParam(required = true, defaultValue = "path") String path) throws FileNotFoundException {
+    public ResponseEntity SaveNewFile(@RequestParam(required = true, defaultValue = "path") String path) throws FileNotFoundException {
 
         try(FileInputStream inputStream = new FileInputStream(new File(path))){
 
             int i=-1;
             while((i=inputStream.read())!=-1){
-
                 System.out.print((char)i);
             }
-            return "Save succesfull";
+
+            return new ResponseEntity("Save successful", HttpStatus.OK);
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
-        return "Save error!";
+        return new ResponseEntity("Save error!", HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/CreateFile/gt/{userId}")
@@ -77,6 +106,8 @@ public class ParserController {
 
         return "OK";
     }
+
+
 
 
 }

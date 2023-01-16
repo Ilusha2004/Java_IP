@@ -28,9 +28,9 @@ public class AriphmeticParser {
 
         String[] arr = DeleteLatine().split("(?=([+\\-*/]))");
 
-        Double result = 0d;
+        Double result = Double.parseDouble(arr[0]);
 
-        for (Integer i = 0; i < arr.length; i++) {
+        for (Integer i = 1; i < arr.length; i++) {
 
             try {
                 String[] temp = arr[i].split("[.]{2,}");
@@ -52,6 +52,7 @@ public class AriphmeticParser {
     private Double performCalculation(Double currentResult, String operationAndNumber) {
 
         String[] operationAndNumberArr = operationAndNumber.split("");
+
         String operation = operationAndNumberArr[0];
 
         Double number = Double.parseDouble(operationAndNumber.substring(1, operationAndNumber.length()));

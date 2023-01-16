@@ -1,9 +1,14 @@
 package websevice.Controller;
 
+import com.cross_cutting.DecoratorFileManager.CreateActionForFile;
+import com.cross_cutting.EnumTypes.Actions;
+import com.cross_cutting.EnumTypes.Extensions;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import static websevice.Controller.ParserController.tempPath;
 
 @RestController
 public class CreateFileController {
@@ -13,23 +18,45 @@ public class CreateFileController {
     }
 
     @PostMapping("/CreateFile")
-    public String CreateAction(@RequestParam(required = true, defaultValue = "path") String path,
-                               @RequestParam(required = true, defaultValue = "action") String action,
-                               @RequestParam(required = true, defaultValue = "inExtension") String inExtension,
-                               @RequestParam(required = true, defaultValue = "outExtension") String outExtension) {
+    public String CreateAction(@RequestParam(required = true, defaultValue = "action") String action,
+                               @RequestParam(required = true, defaultValue = "extension") String extension) throws Exception {
+
+        Extensions extensionsForFile = null;
+        Actions actions = null;
+
+        if(extension.equals("zip")) {
+            extensionsForFile = Extensions.ZIP;
+        } else if(extension.equals("jar")){
+            extensionsForFile = Extensions.ZIP;
+        } else if(extension.equals("rar")){
+            extensionsForFile = Extensions.ZIP;
+        }
 
         if (action.equals("archive")){
-            System.out.println("hui");
-            return "archive " + inExtension + " " + outExtension + " " + path;
+            actions = Actions.ARCHIVE;
         } else if (action.equals("encrypted")) {
-            return "encrypted";
+            actions = Actions.ENCRYPT;
         } else if (action.equals("archiveAndEncrypted")) {
-            return "archiveAndEncrypted";
+            actions = Actions.ARCHIVE_AND_ENCRYPT;
         } else if (action.equals("archiveAndEncrypted")){
-            return "archiveAndEncrypted";
+            actions = Actions.ENCRYPT_AND_ARCHIVE;
+        }
+
+        try {
+            CreateActionForFile createActionForFile = new CreateActionForFile(tempPath, null, extensionsForFile, actions, extensionsForFile);
+            createActionForFile.CreateAction();
+            createActionForFile.start();
+
+        } catch(Exception ex) {
+            throw new Exception();
         }
 
         return "redirect:/admin";
+    }
+
+    @GetMapping("/CreateFile/afterAction/")
+    public void BeforeAction(@RequestParam(required = true, defaultValue = "action") String action) {
+
     }
 
     @GetMapping("/CreateFile/gt/write")
