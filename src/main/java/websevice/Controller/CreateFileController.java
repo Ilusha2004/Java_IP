@@ -1,4 +1,4 @@
-package com.spring.websevice.Controller;
+package websevice.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +13,10 @@ public class CreateFileController {
     }
 
     @PostMapping("/CreateFile")
-    public String CreateAction(@RequestParam(required = true, defaultValue = "") String path,
-                               @RequestParam(required = true, defaultValue = "") String action,
-                               @RequestParam(required = true, defaultValue = "") String inExtension,
-                               @RequestParam(required = true, defaultValue = "") String outExtension) {
+    public String CreateAction(@RequestParam(required = true, defaultValue = "path") String path,
+                               @RequestParam(required = true, defaultValue = "action") String action,
+                               @RequestParam(required = true, defaultValue = "inExtension") String inExtension,
+                               @RequestParam(required = true, defaultValue = "outExtension") String outExtension) {
 
         if (action.equals("archive")){
             System.out.println("hui");
@@ -32,7 +32,7 @@ public class CreateFileController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/CreateFile/gt/{userId}")
+    @GetMapping("/CreateFile/gt/write")
     public String getFile(@PathVariable Long userId) {
 
         return "OK";

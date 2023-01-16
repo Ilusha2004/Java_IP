@@ -1,4 +1,4 @@
-package com.spring.websevice;
+package websevice;
 
 import javax.persistence.Entity;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.spring.websevice;
+package websevice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
