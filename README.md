@@ -42,19 +42,4 @@
 4) Есть ли UI: Desktop, Web, оба ... если да, то на какой технологии
 5) Есть ли сервисы и если да, то какие: Rest, SOAP, Оба.
 
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015046.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015103.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015122.png" width="600"/>
-<img alt="image" height="250" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015155.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015210.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015221.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015237.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015248.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015302.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015315.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015329.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015339.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015355.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015421.png" width="600"/>
-<img alt="image" height="400" src="C:\Users\speed\OneDrive\Рабочий стол\Screenshot 2023-01-17 015516.png" width="600"/>
-
+![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015210.png)
