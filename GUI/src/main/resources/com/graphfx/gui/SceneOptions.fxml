@@ -11,12 +11,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
+<AnchorPane depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
    <children>
-      <Button fx:id="buttonNext" layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#EndAction" prefHeight="35.0" prefWidth="54.0" text="next" />
-      <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" text="cancel" />
-      <Button fx:id="buttonPrev" layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" text="prev" textOverrun="CLIP" />
-      <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0">
+      <Button fx:id="buttonNext" layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#EndAction" prefHeight="35.0" prefWidth="54.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="next" textFill="#000000a3">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Button>
+      <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="cancel" textFill="#000000a3">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Button>
+      <Button fx:id="buttonPrev" layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="prev" textFill="#000000a3" textOverrun="CLIP">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Button>
+      <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0" style="-fx-opacity: 0.4;">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -33,26 +42,26 @@
                </stops>
             </LinearGradient>
          </stroke></Line>
-      <CheckBox fx:id="boxFir" alignment="TOP_LEFT" layoutX="84.0" layoutY="158.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="115.0" text="Encrypt" textOverrun="CLIP">
+      <CheckBox fx:id="boxFir" alignment="TOP_LEFT" layoutX="84.0" layoutY="158.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="115.0" text="Encrypt" textFill="#0000006b" textOverrun="CLIP">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial Black" size="18.0" />
          </font>
          <effect>
             <Glow />
          </effect></CheckBox>
-      <CheckBox fx:id="boxSec" alignment="TOP_LEFT" layoutX="84.0" layoutY="207.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="100.0" text="Archive" textOverrun="WORD_ELLIPSIS">
+      <CheckBox fx:id="boxSec" alignment="TOP_LEFT" layoutX="84.0" layoutY="207.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="115.0" text="Archive" textFill="#0000006b" textOverrun="WORD_ELLIPSIS">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial Black" size="18.0" />
          </font>
          <effect>
             <Glow />
          </effect></CheckBox>
-      <Label fx:id="label_1" layoutX="171.0" layoutY="5.0" prefHeight="39.0" prefWidth="286.0" text="Choose action">
+      <Label fx:id="label_1" layoutX="145.0" layoutY="9.0" prefHeight="55.0" prefWidth="361.0" text="Choose action" textFill="#0000008c">
          <font>
-            <Font size="37.0" />
+            <Font name="Arial Black" size="37.0" />
          </font>
       </Label>
-      <Line endX="499.0" layoutX="101.0" layoutY="330.0" startX="-100.0" strokeWidth="4.0">
+      <Line endX="499.0" layoutX="101.0" layoutY="330.0" startX="-100.0" strokeWidth="4.0" style="-fx-opacity: 0.4;">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -70,9 +79,9 @@
             </LinearGradient>
          </stroke>
       </Line>
-      <CheckBox fx:id="boxReverse" alignment="TOP_LEFT" layoutX="287.0" layoutY="183.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="115.0" text="Reverse" textOverrun="CLIP">
+      <CheckBox fx:id="boxReverse" alignment="TOP_LEFT" layoutX="287.0" layoutY="183.0" mnemonicParsing="false" onAction="#change" prefHeight="35.0" prefWidth="115.0" text="Reverse" textFill="#0000006b" textOverrun="CLIP">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial Black" size="18.0" />
          </font>
          <effect>
             <Glow />

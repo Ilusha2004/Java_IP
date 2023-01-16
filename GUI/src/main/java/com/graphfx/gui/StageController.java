@@ -5,8 +5,11 @@ import cross_cutting.BuilderAriphmeticParser.ParserFabric;
 import cross_cutting.DecoratorFileManager.*;
 import cross_cutting.EnumTypes.Actions;
 import cross_cutting.EnumTypes.Extensions;
+import cross_cutting.HelpfulThings.FilePath;
 import cross_cutting.Parsers.Parser;
 import cross_cutting.Parsers.Writer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +26,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
-import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -230,17 +232,36 @@ public class StageController {
     @FXML
     Button noButton, yesButton;
 
+
+    private static ObservableList<String> observableList = FXCollections.observableArrayList();
+
     public void EndNo(ActionEvent event) {
         stage = (Stage) noButton.getScene().getWindow();
         this.stage.close();
     }
 
+    public static void adding(String file) {
+        observableList.add(file);
+    }
+
+    public static void delete(String file) {
+        observableList.remove(file);
+    }
+
+    public static ObservableList<String> getObservableList() {
+        return observableList;
+    }
+
+    @FXML
+    private ListView<File> ListOfFiles;
+
     public void EndYes(ActionEvent event) throws Exception {
+        CreateActionForFile createActionForFile = null;
 
         if (data.getActions() != null) {
 
             try {
-                CreateActionForFile createActionForFile = new CreateActionForFile(data.getPath(),
+                createActionForFile = new CreateActionForFile(data.getPath(),
                         data.getInExtensions(),
                         data.getOutExtension(),
                         data.getActions(),
@@ -259,6 +280,19 @@ public class StageController {
                 + data.getInExtensions() + " "
                 + data.getPath() + " "
                 + data.getActions());
+
+        adding(data.getPath());
+
+        try {
+            adding(FileSource.getFilePath().getPath());
+
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+
+        for (var id : observableList) {
+            System.out.println(id);
+        }
 
         data = new DataForFile();
 
@@ -345,10 +379,14 @@ public class StageController {
     public void IncreaseSceneAfter(ActionEvent event) throws IOException, ParserConfigurationException, SAXException {
         scenes.Increase();
 
-        ParserFabric fabric = new ParserFabric(data.getPath(), "src/res/new." + extension);
+        FilePath path = new FilePath(data.getPath());
 
-        File file = new File("src/res/new." + extension);
-        data.setPath("src/res/new." + extension);
+        System.out.println("hui" + data.getPath() + "hiu");
+        String temp = path.getName();
+        ParserFabric fabric = new ParserFabric(data.getPath(), "src/res/new_" + temp + "." + extension);
+
+        File file = new File("src/res/new_" + temp + "." + extension);
+        data.setPath("src/res/new_" + temp + "." + extension);
         file.createNewFile();
 
         ParserAndWriterBuilder builder = new ParserAndWriterBuilder();

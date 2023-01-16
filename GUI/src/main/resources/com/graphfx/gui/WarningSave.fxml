@@ -5,15 +5,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="189.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
+<AnchorPane prefHeight="189.0" prefWidth="479.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
    <children>
-      <Text layoutX="75.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure with your action?" wrappingWidth="328.640625">
+      <Text layoutX="38.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure with your action?" wrappingWidth="414.640625">
          <font>
-            <Font size="24.0" />
+            <Font name="Arial Black" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="noButton" layoutX="75.0" layoutY="95.0" mnemonicParsing="false" onAction="#EndNo" prefHeight="57.0" prefWidth="134.0" text="NO" />
-      <Button fx:id="yesButton" layoutX="257.0" layoutY="95.0" mnemonicParsing="false" onAction="#EndYes" prefHeight="57.0" prefWidth="134.0" text="YES" />
+      <Button fx:id="noButton" layoutX="75.0" layoutY="95.0" mnemonicParsing="false" onAction="#EndNo" prefHeight="57.0" prefWidth="134.0" style="-fx-background-radius: 20; -fx-background-color: #87CEEB;" text="NO">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font></Button>
+      <Button fx:id="yesButton" layoutX="257.0" layoutY="95.0" mnemonicParsing="false" onAction="#EndYes" prefHeight="57.0" prefWidth="134.0" style="-fx-background-radius: 20; -fx-background-color: #87CEEB;" text="YES">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -4,14 +4,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="473.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="473.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.MenuController">
    <children>
-      <Text layoutX="79.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is application was made by KoVLya" wrappingWidth="314.90234375">
+      <Text fill="#000000b3" layoutX="29.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is application was made by KoVLya" wrappingWidth="435.90234375">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial Black" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="202.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ver. 0.0.10" wrappingWidth="56.162109375" />
+      <Text fill="#000000b3" layoutX="190.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ver. 0.0.10" wrappingWidth="93.162109375">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font></Text>
 
 
    </children>

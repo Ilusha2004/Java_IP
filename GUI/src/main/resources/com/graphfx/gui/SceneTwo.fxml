@@ -12,12 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.graphfx.gui.StageController">
    <children>
-      <Button layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#IncreaseSceneAfter" prefHeight="35.0" prefWidth="54.0" text="next" />
-      <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" text="cancel" />
-      <Button layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" text="prev" textOverrun="CLIP" />
-      <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0">
+      <Button layoutX="443.0" layoutY="347.0" mnemonicParsing="false" onAction="#IncreaseSceneAfter" prefHeight="35.0" prefWidth="54.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="next" textFill="#000000b0" />
+      <Button fx:id="closeButton" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#Close" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="cancel" textFill="#000000b0" />
+      <Button layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#PrevScene" prefHeight="35.0" prefWidth="54.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="prev" textFill="#000000b0" textOverrun="CLIP" />
+      <Line endX="499.0" layoutX="100.0" layoutY="67.0" startX="-100.0" strokeWidth="4.0" style="-fx-opacity: 0.4;">
          <stroke>
             <LinearGradient cycleMethod="REFLECT" endX="0.35071090047393366" endY="1.0" startX="0.7630331753554502">
                <stops>
@@ -34,7 +34,7 @@
                </stops>
             </LinearGradient>
          </stroke></Line>
-      <Line endX="499.0" layoutX="101.0" layoutY="330.0" startX="-100.0" strokeWidth="4.0">
+      <Line endX="499.0" layoutX="101.0" layoutY="330.0" startX="-100.0" strokeWidth="4.0" style="-fx-opacity: 0.4;">
          <stroke>
             <LinearGradient cycleMethod="REFLECT" endX="0.35071090047393366" endY="1.0" startX="0.7630331753554502">
                <stops>
@@ -51,29 +51,38 @@
                </stops>
             </LinearGradient>
          </stroke></Line>
-      <TextField fx:id="inputField" layoutX="33.0" layoutY="135.0" prefHeight="51.0" prefWidth="437.0" promptText="input path">
+      <TextField fx:id="inputField" layoutX="33.0" layoutY="135.0" prefHeight="51.0" prefWidth="437.0" promptText="input path" style="-fx-background-color: #87CEEB;">
          <font>
             <Font size="24.0" />
          </font></TextField>
-      <Button fx:id="inputButton" layoutX="500.0" layoutY="135.0" mnemonicParsing="false" onAction="#selectInputFile" prefHeight="51.0" prefWidth="79.0" text="select">
+      <Button fx:id="inputButton" layoutX="500.0" layoutY="135.0" mnemonicParsing="false" onAction="#selectInputFile" prefHeight="51.0" prefWidth="79.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="select" textFill="#000000b0">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Text layoutX="187.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input file path" wrappingWidth="226.33203125">
+      <Text fill="#00000070" layoutX="155.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input file path" wrappingWidth="315.33203125">
          <font>
-            <Font size="36.0" />
+            <Font name="Arial Black" size="36.0" />
          </font>
       </Text>
-      <RadioButton fx:id="writeButtonXMl" layoutX="100.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".xml">
+      <RadioButton fx:id="writeButtonXMl" layoutX="100.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".xml" textFill="#00000086">
          <toggleGroup>
             <ToggleGroup fx:id="extensionForWrite" />
          </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="writeButtonJSON" layoutX="244.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".json" toggleGroup="$extensionForWrite" />
-      <RadioButton fx:id="writeButtonTXT" layoutX="392.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".txt" toggleGroup="$extensionForWrite" />
-      <Text layoutX="200.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write parse file in" wrappingWidth="198.73046875">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial Black" size="25.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="writeButtonJSON" layoutX="244.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".json" textFill="#00000086" toggleGroup="$extensionForWrite">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="writeButtonTXT" layoutX="392.0" layoutY="244.0" mnemonicParsing="false" onAction="#WriteExtensionParser" text=".txt" textFill="#00000086" toggleGroup="$extensionForWrite">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font></RadioButton>
+      <Text fill="#0000006e" layoutX="200.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write parse file in" wrappingWidth="198.73046875">
+         <font>
+            <Font name="Arial Black" size="20.0" />
          </font>
       </Text>
    </children>
