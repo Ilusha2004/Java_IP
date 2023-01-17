@@ -3,12 +3,15 @@ package websevice.Controller;
 import com.cross_cutting.DecoratorFileManager.CreateActionForFile;
 import com.cross_cutting.EnumTypes.Actions;
 import com.cross_cutting.EnumTypes.Extensions;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import static websevice.Controller.ParserController.tempPath;
+import java.io.File;
+
+import static websevice.Controller.FileController.files;
+import static websevice.Controller.ParserController.filePath;
+
 
 @RestController
 public class CreateFileController {
@@ -18,11 +21,22 @@ public class CreateFileController {
     }
 
     @PostMapping("/CreateFile")
-    public String CreateAction(@RequestParam(required = true, defaultValue = "action") String action,
-                               @RequestParam(required = true, defaultValue = "extension") String extension) throws Exception {
+    public ResponseEntity<String> CreateAction(@RequestParam(required = true, defaultValue = "path") String path,
+                                      @RequestParam(required = true, defaultValue = "action") String action,
+                                      @RequestParam(required = true, defaultValue = "extension") String extension) throws Exception {
 
         Extensions extensionsForFile = null;
         Actions actions = null;
+
+        File file = new File(path);
+
+        if(!file.exists()) {
+            return new ResponseEntity<>("file doesn't exists", HttpStatus.BAD_REQUEST);
+        }
+
+        if(filePath.getPath() != path) {
+            return new ResponseEntity<String>("file doesn't exist", HttpStatus.BAD_REQUEST);
+        }
 
         if(extension.equals("zip")) {
             extensionsForFile = Extensions.ZIP;
@@ -32,18 +46,24 @@ public class CreateFileController {
             extensionsForFile = Extensions.ZIP;
         }
 
+        String pr = new String();
+
         if (action.equals("archive")){
             actions = Actions.ARCHIVE;
+            pr = "archived_";
         } else if (action.equals("encrypted")) {
             actions = Actions.ENCRYPT;
+            pr = "encrypted_";
         } else if (action.equals("archiveAndEncrypted")) {
             actions = Actions.ARCHIVE_AND_ENCRYPT;
-        } else if (action.equals("archiveAndEncrypted")){
+            pr = "archived_encrypted_";
+        } else if (action.equals("EncryptedAndArchived")){
             actions = Actions.ENCRYPT_AND_ARCHIVE;
+            pr = "encrypted_archive_";
         }
 
         try {
-            CreateActionForFile createActionForFile = new CreateActionForFile(tempPath, null, extensionsForFile, actions, extensionsForFile);
+            CreateActionForFile createActionForFile = new CreateActionForFile(path, actions, extensionsForFile);
             createActionForFile.CreateAction();
             createActionForFile.start();
 
@@ -51,12 +71,13 @@ public class CreateFileController {
             throw new Exception();
         }
 
-        return "redirect:/admin";
+        return new ResponseEntity<String>("file " + path + " was saved", HttpStatus.OK);
     }
 
-    @GetMapping("/CreateFile/afterAction/")
-    public void BeforeAction(@RequestParam(required = true, defaultValue = "action") String action) {
-
+    @PostMapping(value = "/CreateFile/save", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> SaveFile(@RequestBody String file) {
+        files.add(new File(file));
+        return new ResponseEntity<>(file, HttpStatus.OK);
     }
 
     @GetMapping("/CreateFile/gt/write")

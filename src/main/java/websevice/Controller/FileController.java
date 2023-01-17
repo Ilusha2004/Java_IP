@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequestMapping("/")
 public class FileController {
 
-    private static List<File> files = new ArrayList<>();
+    public static List<File> files = new ArrayList<>();
 
     public FileController() {
         files.addAll(List.of(new File("sfdalj"), new File("dfskj")));

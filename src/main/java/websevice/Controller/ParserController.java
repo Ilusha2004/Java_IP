@@ -18,11 +18,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import static websevice.Controller.FileController.files;
+
 @RestController
 @RequestMapping("/")
 public class ParserController {
 
     public static FilePath filePath;
+
+    public FilePath getFilePath() {
+        return filePath;
+    }
 
     @GetMapping("/parse")
     public ResponseEntity Create() {
@@ -44,11 +50,11 @@ public class ParserController {
 
         FilePath filePath = new FilePath(path);
 
-        tempPath = "src/res/out " + filePath.getName() + "." + extension;
+        tempPath = "src/res/out" + filePath.getName() + "." + extension;
         this.extension = extension;
         filePath.setPath(tempPath);
 
-        ParserFabric fabric = new ParserFabric(path, "src/res/out " + filePath.getName() + "." + extension);
+        ParserFabric fabric = new ParserFabric(path, "src/res/out" + filePath.getName() + "." + extension);
 
         ParserAndWriterBuilder builder = new ParserAndWriterBuilder();
 
@@ -60,9 +66,14 @@ public class ParserController {
         parser.parse();
         writer.write();
 
-        File file = new File("src/res/out " + filePath.getName() + "." + extension);
 
-        return new ResponseEntity<File>(file, HttpStatus.OK);
+        return new ResponseEntity<File>(new File("src/res/out" + filePath.getName() + "." + extension), HttpStatus.OK);
+    }
+
+    @GetMapping("/parse/getFile/{path}")
+    public String getFile(@PathVariable String path) {
+
+        return null;
     }
 
     @GetMapping("/parse/writting")
@@ -73,41 +84,41 @@ public class ParserController {
         return new ResponseEntity<File>(outFile, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/parse", consumes = "application/json", produces = "application/json")
-    public String CreateAction(@RequestParam(required = true, defaultValue = "path") String path,
-                               @RequestParam(required = true, defaultValue = "inExtension") String inExtension) {
+    @PostMapping(value = "/parse/saveFile", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<File> CreateAction(@RequestParam(required = true, defaultValue = "path") String path) {
 
+        files.add(new File(path));
+        return new ResponseEntity<>(new File(path), HttpStatus.OK);
 
-
-        return "redirect:/admin";
     }
 
-    @GetMapping("/parse/write")
-    public ResponseEntity SaveNewFile(@RequestParam(required = true, defaultValue = "path") String path) throws FileNotFoundException {
+    @GetMapping("/parse/read")
+    public ResponseEntity<String> SaveNewFile(@RequestParam(required = true, defaultValue = "path") String path) throws FileNotFoundException {
 
-        try(FileInputStream inputStream = new FileInputStream(new File(path))){
+        File file = new File(path);
 
-            int i=-1;
-            while((i=inputStream.read())!=-1){
-                System.out.print((char)i);
+        if(file.exists()) {
+
+            try (FileInputStream inputStream = new FileInputStream(new File(path))) {
+
+                StringBuffer buffer = new StringBuffer();
+
+                int i = -1;
+                while ((i = inputStream.read()) != -1) {
+                    System.out.print((char) i);
+                    buffer.append((char)i);
+                }
+
+                return new ResponseEntity(buffer.toString() + "\nRead successful", HttpStatus.OK);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
 
-            return new ResponseEntity("Save successful", HttpStatus.OK);
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
         }
 
-        return new ResponseEntity("Save error!", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity("Read error!", HttpStatus.BAD_REQUEST);
     }
-
-    @GetMapping("/CreateFile/gt/{userId}")
-    public String getFile(@PathVariable Iterable<File> userId) {
-
-        return "OK";
-    }
-
-
 
 
 }
