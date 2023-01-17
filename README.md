@@ -42,7 +42,6 @@
 4) Есть ли UI: Desktop, Web, оба ... если да, то на какой технологии
 5) Есть ли сервисы и если да, то какие: Rest, SOAP, Оба.
 
-![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015210.png)
 ![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015046.png)
 ![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015103.png)
 ![image](https://github.com/Ilusha2004/Java_IP/blob/main/src/res/images/Screenshot%202023-01-17%20015155.png)

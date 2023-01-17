@@ -1,6 +1,5 @@
 package com.cross_cutting.DecoratorFileManager;
 
-import com.cross_cutting.EnumTypes.Actions;
 import com.cross_cutting.EnumTypes.Extensions;
 import com.cross_cutting.HelpfulThings.FilePath;
 
@@ -11,23 +10,21 @@ import java.io.IOException;
 public class FileSource implements DecoratorFileInterface {
 
     private static FilePath path;
-    private static Extensions inExtension;
-    private static Extensions outExtension;
-    private static Actions actions;
+    private static FilePath firstPath;
+    private static Extensions archiveExtensions;
 
-    public FileSource(String path, Extensions inExtension, Extensions outExtension, Actions actions) {
-        this.path = new FilePath(path);
-        this.inExtension = inExtension;
-        this.outExtension = outExtension;
-        this.actions = actions;
+    public FileSource(String path, Extensions archiveExtensions) {
+        this.path              = new FilePath(path);
+        this.archiveExtensions = archiveExtensions;
+        this.firstPath = new FilePath(path);
     }
 
-    public static void setname(String name) {
-        FileSource.path.setFirstName(name);
+    public static FilePath getFirstPath() {
+        return firstPath;
     }
 
-    public static void setextension(String extension) {
-        FileSource.path.setFirstExtension(extension);
+    public static void setExtension(String extension) {
+        FileSource.path.setExtension(extension);
     }
 
     public static FilePath getFilePath() {
@@ -38,16 +35,9 @@ public class FileSource implements DecoratorFileInterface {
         FileSource.path = path;
     }
 
-    public static Extensions getInExtension() {
-        return inExtension;
-    }
 
-    public static Extensions getOutExtension() {
-        return outExtension;
-    }
-
-    public static Actions getActions() {
-        return actions;
+    public static Extensions getArchiveExtensions() {
+        return archiveExtensions;
     }
 
     @Override

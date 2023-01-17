@@ -66,14 +66,7 @@ public class ParserController {
         parser.parse();
         writer.write();
 
-
         return new ResponseEntity<File>(new File("src/res/out" + filePath.getName() + "." + extension), HttpStatus.OK);
-    }
-
-    @GetMapping("/parse/getFile/{path}")
-    public String getFile(@PathVariable String path) {
-
-        return null;
     }
 
     @GetMapping("/parse/writting")
@@ -86,10 +79,8 @@ public class ParserController {
 
     @PostMapping(value = "/parse/saveFile", consumes = "application/json", produces = "application/json")
     public ResponseEntity<File> CreateAction(@RequestParam(required = true, defaultValue = "path") String path) {
-
         files.add(new File(path));
         return new ResponseEntity<>(new File(path), HttpStatus.OK);
-
     }
 
     @GetMapping("/parse/read")

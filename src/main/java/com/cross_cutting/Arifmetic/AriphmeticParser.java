@@ -24,29 +24,38 @@ public class AriphmeticParser {
         return temp;
     }
 
-    public Integer getResult() {
+    public Double getResult() {
 
         String[] arr = DeleteLatine().split("(?=([+\\-*/]))");
 
-        Integer result = Integer.parseInt(arr[0]);
+        Double result = Double.parseDouble(arr[0]);
 
         for (Integer i = 1; i < arr.length; i++) {
+
             try {
-                result = performCalculation(result, arr[i]);
+                String[] temp = arr[i].split("[.]{2,}");
+
+                for(var id : temp) {
+                    System.out.println(id);
+                    result = performCalculation(result, id);
+                }
+
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                e.getMessage();
             }
+
         }
 
         return result;
     }
 
-    private Integer performCalculation(Integer currentResult, String operationAndNumber) {
+    private Double performCalculation(Double currentResult, String operationAndNumber) {
 
         String[] operationAndNumberArr = operationAndNumber.split("");
+
         String operation = operationAndNumberArr[0];
 
-        Integer number = Integer.parseInt(operationAndNumber.substring(1, operationAndNumber.length()));
+        Double number = Double.parseDouble(operationAndNumber.substring(1, operationAndNumber.length()));
 
         switch (operation) {
             case "+":
@@ -60,6 +69,12 @@ public class AriphmeticParser {
             default:
                 throw new UnsupportedOperationException("Unsupported operation!");
         }
+
+    }
+
+    public static void main(String[] args) {
+        AriphmeticParser ariphmeticParser = new AriphmeticParser("khgh9.9+*ghghjgvj75++89");
+        System.out.println(ariphmeticParser.getResult());
 
     }
 

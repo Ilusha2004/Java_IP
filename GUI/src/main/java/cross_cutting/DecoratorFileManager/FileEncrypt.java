@@ -38,6 +38,7 @@ public class FileEncrypt extends DataDecorator {
             cipher_encrypted.init(Cipher.ENCRYPT_MODE, key);
 
             byte[] cipherText = cipher_encrypted.doFinal(new FileInputStream("src/res/archiveAndEncrypt/" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()).readAllBytes());
+            System.out.println(3);
             FileOutputStream fileOutputStream = new FileOutputStream("src/res/archiveAndEncrypt/encrypted_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension());
 
             FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/encrypted_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getExtension()));

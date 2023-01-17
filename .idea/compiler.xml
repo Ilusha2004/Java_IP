@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CC" />
-        <module name="WebSevice" />
         <module name="GUI" />
       </profile>
     </annotationProcessing>
@@ -15,10 +14,13 @@
       <module name="WebService" target="17" />
       <module name="WebService.main" target="17" />
       <module name="WebService.test" target="17" />
+      <module name="WebSevice" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CC" options="-parameters" />
+      <module name="GUI" options="" />
       <module name="WebSevice" options="-parameters" />
     </option>
   </component>

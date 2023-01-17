@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 
 import static websevice.Controller.FileController.files;
-import static websevice.Controller.ParserController.filePath;
 
 
 @RestController
@@ -20,7 +19,7 @@ public class CreateFileController {
         return "CreateFile";
     }
 
-    @PostMapping("/CreateFile")
+    @GetMapping("/CreateFile/action")
     public ResponseEntity<String> CreateAction(@RequestParam(required = true, defaultValue = "path") String path,
                                       @RequestParam(required = true, defaultValue = "action") String action,
                                       @RequestParam(required = true, defaultValue = "extension") String extension) throws Exception {
@@ -32,10 +31,6 @@ public class CreateFileController {
 
         if(!file.exists()) {
             return new ResponseEntity<>("file doesn't exists", HttpStatus.BAD_REQUEST);
-        }
-
-        if(filePath.getPath() != path) {
-            return new ResponseEntity<String>("file doesn't exist", HttpStatus.BAD_REQUEST);
         }
 
         if(extension.equals("zip")) {
@@ -71,7 +66,7 @@ public class CreateFileController {
             throw new Exception();
         }
 
-        return new ResponseEntity<String>("file " + path + " was saved", HttpStatus.OK);
+        return new ResponseEntity<String>("file " + action + " " + path + " was saved", HttpStatus.OK);
     }
 
     @PostMapping(value = "/CreateFile/save", consumes = "application/json", produces = "application/json")
@@ -80,9 +75,4 @@ public class CreateFileController {
         return new ResponseEntity<>(file, HttpStatus.OK);
     }
 
-    @GetMapping("/CreateFile/gt/write")
-    public String getFile(@PathVariable Long userId) {
-
-        return "OK";
-    }
 }

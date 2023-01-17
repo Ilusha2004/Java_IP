@@ -13,10 +13,6 @@ public class MultiThreadServer {
     OutputStream os;
     InputStream is;
 
-
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
 
         try (ServerSocket server = new ServerSocket(3345);

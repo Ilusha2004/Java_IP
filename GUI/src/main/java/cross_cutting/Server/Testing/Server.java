@@ -15,28 +15,6 @@ public class Server {
     private String filename;
 
 
-//    void RPN() {
-//        ReadWrite readWrite = new ReadWrite();
-//        String text = readWrite.read(filename);
-//
-//        Pattern MY_PATTERN = Pattern.compile("[()0-9]*( ){0,}([+-/*]( ){0,}[()0-9]{0,})*");
-//        Matcher m = MY_PATTERN.matcher(text);
-//        while (m.find()) {
-//            String expression = m.group();
-//            if(expression.equals("") || expression.equals(" ")) {
-//                continue;
-//            }
-//            try {
-//                text = text.replace(expression, Ideone.calc(ExpressionParser.parse(expression)));
-//            }
-//            catch(Exception e){
-//                ///
-//            }
-//        }
-//        readWrite.write(filename, text);
-//    }
-
-
     public void connectSocketServer(int port) {
 
         try {

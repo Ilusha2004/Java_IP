@@ -16,6 +16,22 @@ public class ParserFabric {
     private Extensions inExtensions;
     private Extensions outExtensions;
 
+    public String getInPath() {
+        return inPath;
+    }
+
+    public String getOutPath() {
+        return outPath;
+    }
+
+    public Extensions getInExtensions() {
+        return inExtensions;
+    }
+
+    public Extensions getOutExtensions() {
+        return outExtensions;
+    }
+
     public ParserFabric(String inPath, String outPath) {
 
         FilePath filePath = new FilePath(inPath);

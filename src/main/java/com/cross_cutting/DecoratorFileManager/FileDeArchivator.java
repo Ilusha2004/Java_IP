@@ -19,11 +19,11 @@ public class FileDeArchivator extends DataDecorator {
     @Override
     public void writeData() throws Exception {
 
-        if (FileSource.getInExtension().equals(Extensions.ZIP)) {
+        if (FileSource.getArchiveExtensions().equals(Extensions.ZIP)) {
             ZipDeArchiving();
-        } else if (FileSource.getInExtension().equals(Extensions.JAR)) {
+        } else if (FileSource.getArchiveExtensions().equals(Extensions.JAR)) {
             JarDeArchiving();
-        } else if (FileSource.getInExtension().equals(Extensions.RAR)) {
+        } else if (FileSource.getArchiveExtensions().equals(Extensions.RAR)) {
             RarDeArchiving();
         }
 
@@ -41,17 +41,21 @@ public class FileDeArchivator extends DataDecorator {
     public void ZipDeArchiving() {
 
         try (ZipInputStream zin = new ZipInputStream(new FileInputStream(FileSource.getFilePath().getPath()))) {
+
             ZipEntry entry;
+            String Name;
 
             while ((entry = zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension());
-                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()));
-                FileSource.setname("new_" + FileSource.getFilePath().getName());
+                Name = entry.getName();
+
+                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + Name);
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
                 }
+
+                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + Name));
 
                 fout.flush();
                 zin.closeEntry();
@@ -64,20 +68,24 @@ public class FileDeArchivator extends DataDecorator {
 
     }
 
+
     public void RarDeArchiving() {
 
         try (ZipInputStream zin = new ZipInputStream(new FileInputStream(FileSource.getFilePath().getPath()))) {
             ZipEntry entry;
+            String Name;
 
             while ((entry = zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension());
-                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()));
-                FileSource.setname("new_" + FileSource.getFilePath().getName());
+                Name = entry.getName();
+
+                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + Name);
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
                 }
+
+                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + Name));
 
                 fout.flush();
                 zin.closeEntry();
@@ -94,12 +102,14 @@ public class FileDeArchivator extends DataDecorator {
 
         try (JarInputStream zin = new JarInputStream(new FileInputStream(FileSource.getFilePath().getPath()))) {
             JarEntry entry;
+            String Name;
 
             while ((entry = (JarEntry) zin.getNextEntry()) != null) {
 
-                FileOutputStream fout = new FileOutputStream("src/res/archiveAndEncrypt/new_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension());
-                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + FileSource.getFilePath().getName() + "." + FileSource.getFilePath().getFirstExtension()));
-                FileSource.setname("new_" + FileSource.getFilePath().getName());
+                Name = entry.getName();
+
+                FileOutputStream fout = new FileOutputStream( "src/res/archiveAndEncrypt/new_" + Name);
+                FileSource.setPath(new FilePath("src/res/archiveAndEncrypt/new_" + Name));
 
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);

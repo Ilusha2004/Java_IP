@@ -9,7 +9,6 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/GUI/pom.xml" />
-        <option value="$PROJECT_DIR$/WebSevice/pom.xml" />
       </list>
     </option>
   </component>
