@@ -1,4 +1,5 @@
 # Java_IP
+WebSupport(Rest API), UNIT testing, JavaFX GUI
  
 Необходимо реализовать консольное приложение, которое:
 
