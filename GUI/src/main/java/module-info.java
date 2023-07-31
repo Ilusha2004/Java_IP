@@ -4,6 +4,8 @@ module com.graphfx.gui {
     requires javafx.web;
     requires json.simple;
     requires java.compiler;
+    requires java.xml;
+//    requires javafx.scene.web;
 
 
     opens com.graphfx.gui to javafx.fxml;

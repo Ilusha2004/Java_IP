@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CC" />
         <module name="GUI" />
+        <module name="Java_IP" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +22,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CC" options="-parameters" />
       <module name="GUI" options="" />
+      <module name="Java_IP" options="-parameters" />
       <module name="WebSevice" options="-parameters" />
     </option>
   </component>
